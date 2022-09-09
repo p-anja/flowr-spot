@@ -1,3 +1,4 @@
+
 .container {
     height: 500px;
     width: 100%;
@@ -9,9 +10,11 @@
     background: url('../../assets/pl-hero.svg'); 
     background-size: cover;
     background-repeat: no-repeat;
+    position: relative;
 }
 
 .searchTitle {
+    font-family: 'Montserrat';
     font-weight: 600;
     font-size: 40px;
     line-height: 40px;
@@ -49,4 +52,10 @@
     font-size: 18px;
     line-height: 18px;
     color: #949EA0;
+}
+
+.searchButton {
+    position: absolute;
+    width: 20px;
+    height: 20px;
 }
