@@ -15,14 +15,6 @@
 
     color: #334144;
 }
-.input {
-    background: #F5F6F7;
-    border: 1px solid #DFE5EA;
-    border-radius: 3px;
-    width: 50%;
-    height: 50px;
-    margin: 5px;
-}
 
 .inputContainer {
     display: flex;
@@ -59,7 +51,6 @@
     color: #FFFFFF;
 }
 
-.input::placeholder,
 .input2::placeholder  {
     position: absolute;
     width: 65px;

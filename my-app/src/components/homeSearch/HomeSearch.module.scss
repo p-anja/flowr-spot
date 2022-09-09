@@ -11,6 +11,9 @@
     background-size: cover;
     background-repeat: no-repeat;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .searchTitle {
@@ -36,26 +39,41 @@
     mix-blend-mode: normal;
     opacity: 0.7;
 }
+.inputContainer{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    width: 600px;
+}
 
 .searchInput {
     background: #FFFFFF;
     box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.05);
     border-radius: 3px;
-    width: 600px;
     height: 70px;
+    width: 100%;
+    padding-left: 20px;
 }
 
-::placeholder {
+.searchInput::placeholder {
     font-family: 'Ubuntu';
     font-style: normal;
     font-weight: 300;
     font-size: 18px;
     line-height: 18px;
     color: #949EA0;
+
+    position: absolute;
+    width: 260px;
+    height: 20px;
+    left: 20px;
+    top: 25px;
 }
 
 .searchButton {
     position: absolute;
     width: 20px;
     height: 20px;
+    right: 20px;
+    top: 25px;
 }
