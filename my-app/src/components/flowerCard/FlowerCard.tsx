@@ -1,6 +1,7 @@
+import axios from 'axios';
 import styles from './FlowerCard.module.scss';
-import flowerPic from '../../assets/flowerPic.svg'
-import star from '../../assets/star.svg'
+import star from '../../assets/star.svg';
+import starColor from '../../assets/starColor.svg';
 
 interface IFlowerProps {
     flower: {
@@ -12,19 +13,29 @@ interface IFlowerProps {
         favorite: boolean
     }
 }
-function FlowerCard (props: IFlowerProps) {
+function FlowerCard ({flower}: IFlowerProps) {
+
+    const {id, name, latin_name, sightings, profile_picture, favorite} = flower;
+
+    const handleChange = () =>{
+        if(!favorite)
+            axios.post(axios.defaults.baseURL + '/v1/flowers/' + id + '/favorites')
+                .then(res =>{
+                    console.log(res.data)
+                })
+    }
 
     return(
         <div className={styles.cardContainer}>
             <div className={styles.background}/>
-            <img src={props.flower.profile_picture} className={styles.profilePicture}></img>
+            <img src={profile_picture} className={styles.profilePicture}></img>
             <div className={styles.cardTop}>
-                <img src={star}></img>
+                <img src={favorite ? starColor : star} onClick={() => handleChange()}></img>
             </div>
             <div className={styles.cardBottom}>
-                <h5 className={styles.cardTitle}>{props.flower.name}</h5>
-                <label className={styles.cardLabel}>{props.flower.latin_name}</label>
-                <label className={styles.sightings}>{props.flower.sightings} sightings</label>
+                <h5 className={styles.cardTitle}>{name}</h5>
+                <label className={styles.cardLabel}>{latin_name}</label>
+                <label className={favorite ? styles.sightingsFavorite : styles.sightings}>{sightings} sightings</label>
             </div>
         </div>
         

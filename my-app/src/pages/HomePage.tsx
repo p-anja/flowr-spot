@@ -15,8 +15,10 @@ function HomePage () {
     const fetchFlowers = () =>{
         axios.get(axios.defaults.baseURL + '/v1/flowers')
             .then(res =>{
-                setFlowers(res.data.flowers)
-                // console.log(res.data.flowers)
+                setFlowers(res.data.flowers);
+            })
+            .catch(err =>{
+                console.log(err);
             })
     }
 

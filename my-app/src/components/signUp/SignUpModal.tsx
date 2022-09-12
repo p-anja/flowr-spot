@@ -1,6 +1,8 @@
 import Modal from 'react-modal';
-import styles from './SignUpModal.module.scss';
 import {useForm} from 'react-hook-form';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import styles from './SignUpModal.module.scss';
 
 // Modal.setAppElement('#root');
  
@@ -28,9 +30,9 @@ const customStyles = {
 function SignUpModal (props: ISignUpModalProps) {
 
     const {register, handleSubmit, formState: {errors}} = useForm();
+    const history  = useNavigate();
 
     return(
-        // <div className={styles.container}>
             <Modal
             isOpen={props.modalIsOpen}
             style={customStyles}
@@ -38,14 +40,21 @@ function SignUpModal (props: ISignUpModalProps) {
             >
                 <h1 className={styles.title}>Create an account</h1>
                 <form onSubmit={handleSubmit((data) =>{
-                    console.log(data)
+                    axios.post(axios.defaults.baseURL + '/v1/users/register', data)
+                        .then(res =>{
+                            localStorage.setItem('token', res.data.auth_token);
+                            props.close(false);
+                        })
+                        .catch(err =>{
+                            console.log(err);
+                        })
                 })}>
                     <div className={styles.inputContainer}>
-                        <input {...register('firstName', {required: true})} placeholder='First name' className={styles.input}></input>
-                        <input {...register('lastName', {required: true})} placeholder='Last name' className={styles.input}></input>
+                        <input {...register('first_name', {required: true})} placeholder='First name' className={styles.input}></input>
+                        <input {...register('last_name', {required: true})} placeholder='Last name' className={styles.input}></input>
                     </div>
                     <div className={styles.inputContainer}>
-                        <input {...register('dateOfBirth', {required: true})} placeholder='Date of Birth' type='text' className={styles.input2}></input>
+                        <input {...register('date_of_birth', {required: true})} placeholder='Date of Birth' type='date' className={styles.input2}></input>
                     </div>
                     <div className={styles.inputContainer}>
                         <input {...register('email', {required: true})} placeholder='Email Address' className={styles.input2}></input>
@@ -61,7 +70,6 @@ function SignUpModal (props: ISignUpModalProps) {
                     <label className={styles.label} onClick={() => props.close(false)}>I don't want to register</label>
                 </div>
             </Modal>
-        // </div>
     );
 }
 

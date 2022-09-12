@@ -1,8 +1,6 @@
 import Modal from 'react-modal';
-import styles from './LoginModal.module.scss';
 import {useForm} from 'react-hook-form';
-
-// Modal.setAppElement('#root');
+import styles from './LoginModal.module.scss';
 
 const customStyles = {
     content: {
@@ -25,7 +23,7 @@ interface ILoginModalProps {
     modalIsOpen: boolean
 }
 
-function LoginModal (props: ILoginModalProps) {
+const LoginModal = (props: ILoginModalProps) => {
     
     const {register, handleSubmit, formState: {errors}} = useForm();
 

@@ -63,6 +63,24 @@
     mix-blend-mode: normal;
 }
 
+.sightingsFavorite {
+    display: flex;
+    width: 103px;
+    height: 30px;
+    background: linear-gradient(270deg, #ECBCB3 0%, #EAA79E 100%);
+    border-radius: 20px;
+    font-size: 12px;
+    margin-top: 10px;
+    margin-left: 30%;
+    
+    text-align: center;
+    align-items:  center;
+    justify-content: center;
+    color: #FFFFFF;
+
+    mix-blend-mode: normal;
+}
+
 .cardTop {
     position: absolute;
     height: 30%;
