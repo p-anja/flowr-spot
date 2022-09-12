@@ -1,32 +1,27 @@
-import styles from './HomePage.module.scss';
+import { useState, useEffect } from 'react';
 import Header from '../components/header/Header';
 import HomeSearch from '../components/homeSearch/HomeSearch';
 import FlowerList from '../components/flowerList/FlowerList';
-import axios from 'axios';
-import { useState, useEffect } from 'react';
+import { fetchFlowers, Flower } from "../service/Flower.service";
 
-function HomePage () {
-    const [flowers, setFlowers] = useState([]); 
+
+const HomePage = () => {
+    const [flowers, setFlowers] = useState<Flower[]>([]); 
+
+    const fetchData = async () => {
+        const {data} = await fetchFlowers();
+        setFlowers(data.flowers);
+      };
 
     useEffect(() =>{
-        fetchFlowers();
+        fetchData();
     }, []);
-
-    const fetchFlowers = () =>{
-        axios.get(axios.defaults.baseURL + '/v1/flowers')
-            .then(res =>{
-                setFlowers(res.data.flowers);
-            })
-            .catch(err =>{
-                console.log(err);
-            })
-    }
 
     return(
         <div>
             <Header></Header>
             <HomeSearch></HomeSearch>
-            <FlowerList flowers={flowers}></FlowerList>
+            {flowers && <FlowerList flowers={flowers}></FlowerList>}
         </div>
     );
 }

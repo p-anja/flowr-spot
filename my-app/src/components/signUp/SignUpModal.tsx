@@ -40,14 +40,15 @@ function SignUpModal (props: ISignUpModalProps) {
             >
                 <h1 className={styles.title}>Create an account</h1>
                 <form onSubmit={handleSubmit((data) =>{
-                    axios.post(axios.defaults.baseURL + '/v1/users/register', data)
-                        .then(res =>{
-                            localStorage.setItem('token', res.data.auth_token);
-                            props.close(false);
-                        })
-                        .catch(err =>{
-                            console.log(err);
-                        })
+                    // axios.post(axios.defaults.baseURL + '/v1/users/register', data)
+                    //     .then(res =>{
+                    //         localStorage.setItem('token', res.data.auth_token);
+                    //         props.close(false);
+                    //     })
+                    //     .catch(err =>{
+                    //         console.log(err);
+                    //     })
+                    console.log(data)
                 })}>
                     <div className={styles.inputContainer}>
                         <input {...register('first_name', {required: true})} placeholder='First name' className={styles.input}></input>

@@ -23,7 +23,7 @@ function FlowerList (props: IFlowerListProps) {
             {
                 props.flowers.map((flower) =>{
                     return(
-                        <FlowerCard flower={flower}></FlowerCard>
+                        <FlowerCard flower={flower} key={flower.id}></FlowerCard>
                     );
                 })
             }

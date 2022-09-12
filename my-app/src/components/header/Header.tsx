@@ -19,11 +19,10 @@ function Header () {
     const [logoutModalIsOpen, setLogoutModalIsOpen] = useState(false);
     const [user, setUser] = useState<User | null>(null);
 
-    console.log(user?.first_name)
-
 
     useEffect(() =>{
-        fetchUser();
+        if(!!localStorage.getItem('token'))
+            fetchUser();
     }, []);
 
     const fetchUser = () =>{
@@ -52,8 +51,6 @@ function Header () {
     const authorized = () => {
         return localStorage.getItem('token') !== null;
     }
-
-    console.log(",",authorized() && user)
 
 
     return(
