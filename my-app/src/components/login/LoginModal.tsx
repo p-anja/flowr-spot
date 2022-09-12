@@ -1,5 +1,6 @@
 import Modal from 'react-modal';
 import {useForm} from 'react-hook-form';
+import axios from 'axios';
 import styles from './LoginModal.module.scss';
 
 const customStyles = {
@@ -28,7 +29,6 @@ const LoginModal = (props: ILoginModalProps) => {
     const {register, handleSubmit, formState: {errors}} = useForm();
 
     return(
-        // <div className={styles.container}>
             <Modal
             isOpen={props.modalIsOpen}
             style={customStyles}
@@ -36,7 +36,14 @@ const LoginModal = (props: ILoginModalProps) => {
             >
                 <h1 className={styles.title}>Welcome Back</h1>
                 <form onSubmit={handleSubmit((data) =>{
-                    console.log(data)
+                    axios.post(axios.defaults.baseURL + '/v1/users/login', data)
+                    .then(res =>{
+                        localStorage.setItem('token', res.data.auth_token);
+                        props.close(false);
+                    })
+                    .catch(err =>{
+                        console.log(err);
+                    })
                 })}>
                     <div className={styles.inputContainer}>
                         <input {...register('email', {required: true})} placeholder='Email Address' type='text' className={styles.input2}></input>
@@ -52,7 +59,6 @@ const LoginModal = (props: ILoginModalProps) => {
                     <label className={styles.label} onClick={() => props.close(false)}>I don't want to login</label>
                 </div>
             </Modal>
-        // </div>
     );
 }
 export default LoginModal;

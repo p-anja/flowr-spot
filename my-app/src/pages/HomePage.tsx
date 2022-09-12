@@ -6,7 +6,7 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 
 function HomePage () {
-    const [flowers, setFlowers] = useState([]);
+    const [flowers, setFlowers] = useState([]); 
 
     useEffect(() =>{
         fetchFlowers();

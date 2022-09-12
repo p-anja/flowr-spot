@@ -1,4 +1,5 @@
 import Modal from 'react-modal';
+import { isPropertySignature } from 'typescript';
 import profilePic from '../../assets/profile-holder.svg';
 import xButton from '../../assets/x-button.svg';
 import InfoLabel from '../infoLabel/InfoLabel';
@@ -25,10 +26,14 @@ interface ILogoutModalProps {
     modalIsOpen: boolean
 }
 
-function LogoutModal (props: ILogoutModalProps){
+const LogoutModal =  (props: ILogoutModalProps) => {
+
+    const logout = () =>{
+        localStorage.removeItem('token');
+        props.close(false);
+    }
 
     return(
-        // <div>
             <Modal
             isOpen={props.modalIsOpen}
             style={customStyles}
@@ -54,10 +59,9 @@ function LogoutModal (props: ILogoutModalProps){
                     </div>
                 </div>
                 <div className={styles.buttonContainer}>
-                    <button className={styles.button}>Logout</button>
+                    <button className={styles.button} onClick={() => logout()}>Logout</button>
                 </div>
             </Modal>    
-        // </div>
     );
 }
 export default LogoutModal;
