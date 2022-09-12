@@ -7,7 +7,6 @@ function App() {
   return (
       <Routes>
         <Route path='/' element={<HomePage/>}></Route>
-        <Route path='/modal' element={<LogoutModal/>}></Route>
       </Routes>
   );
 }

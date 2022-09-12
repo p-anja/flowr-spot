@@ -16,6 +16,7 @@ const customStyles = {
       width: '440px',
       borderRadius: '3px',
       boxShadow: '0px 15px 30px rgba(0, 0, 0, 0.05)',
+      overflow: 'visible'
     },
   };
 
@@ -29,7 +30,7 @@ function LoginModal (props: ILoginModalProps) {
     const {register, handleSubmit, formState: {errors}} = useForm();
 
     return(
-        <div className={styles.container}>
+        // <div className={styles.container}>
             <Modal
             isOpen={props.modalIsOpen}
             style={customStyles}
@@ -49,9 +50,11 @@ function LoginModal (props: ILoginModalProps) {
                         <button type='submit' className={styles.button}>Login to your account</button>
                     </div>
                 </form>
-                <label className={styles.label} onClick={() => props.close(false)}>I don't want to login</label>
+                <div className={styles.labelContainer}>
+                    <label className={styles.label} onClick={() => props.close(false)}>I don't want to login</label>
+                </div>
             </Modal>
-        </div>
+        // </div>
     );
 }
 export default LoginModal;

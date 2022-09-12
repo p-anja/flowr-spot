@@ -6,7 +6,7 @@
     padding-top: 100px;
     color: white;
     overflow: hidden;
-    background: #C04848;  /* fallback for old browsers */
+    background: #C04848;  
     background: url('../../assets/pl-hero.svg'); 
     background-size: cover;
     background-repeat: no-repeat;
@@ -56,7 +56,7 @@
 }
 
 .searchInput::placeholder {
-    font-family: 'Ubuntu';
+    // font-family: 'Ubuntu';
     font-style: normal;
     font-weight: 300;
     font-size: 18px;

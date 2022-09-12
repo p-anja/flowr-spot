@@ -1,6 +1,5 @@
 import Modal from 'react-modal';
 import styles from './SignUpModal.module.scss';
-import {useState} from 'react';
 import {useForm} from 'react-hook-form';
 
 // Modal.setAppElement('#root');
@@ -17,6 +16,7 @@ const customStyles = {
       width: '440px',
       borderRadius: '3px',
       boxShadow: '0px 15px 30px rgba(0, 0, 0, 0.05)',
+      overflow: 'visible'
     },
   };
 
@@ -30,7 +30,7 @@ function SignUpModal (props: ISignUpModalProps) {
     const {register, handleSubmit, formState: {errors}} = useForm();
 
     return(
-        <div className={styles.container}>
+        // <div className={styles.container}>
             <Modal
             isOpen={props.modalIsOpen}
             style={customStyles}
@@ -57,9 +57,11 @@ function SignUpModal (props: ISignUpModalProps) {
                         <button type='submit' className={styles.button}>Create account</button>
                     </div>
                 </form>
-                <label className={styles.label} onClick={() => props.close(false)}>I don't want to register</label>
+                <div className={styles.labelContainer}>
+                    <label className={styles.label} onClick={() => props.close(false)}>I don't want to register</label>
+                </div>
             </Modal>
-        </div>
+        // </div>
     );
 }
 

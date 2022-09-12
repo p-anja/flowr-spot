@@ -1,6 +1,5 @@
 import styles from './HomeSearch.module.scss';
 import searchPic from '../../assets/search.svg';
-import InputField from '../inputField/InputField';
 
 function HomeSearch () {
 

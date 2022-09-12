@@ -1,5 +1,8 @@
 import Modal from 'react-modal';
 import profilePic from '../../assets/profile-holder.svg';
+import xButton from '../../assets/x-button.svg';
+import InfoLabel from '../infoLabel/InfoLabel';
+import styles from './LogoutModal.module.scss';
 
 Modal.setAppElement('#root');
 
@@ -11,26 +14,50 @@ const customStyles = {
       bottom: 'auto',
       marginRight: '-50%',
       transform: 'translate(-50%, -50%)',
-      height: '290px',
-      width: '440px',
+      height: '550px',
+      width: '590px',
       borderRadius: '3px',
       boxShadow: '0px 15px 30px rgba(0, 0, 0, 0.05)',
     },
   };
+interface ILogoutModalProps {
+    close: (value: boolean) => void, 
+    modalIsOpen: boolean
+}
 
-function LogoutModal (){
+function LogoutModal (props: ILogoutModalProps){
 
     return(
-        <div>
+        // <div>
             <Modal
-            isOpen={true}
+            isOpen={props.modalIsOpen}
             style={customStyles}
             >
-                <div>
-                    <img src={profilePic}></img>
+                <div className={styles.container}>
+                    <div className={styles.xButtonContainer}>
+                        <img onClick={() => props.close(false)} src={xButton} className={styles.buttonImage}></img>
+                    </div>
+                    <div className={styles.container1}>
+                        <div className={styles.imageContainer}>
+                            <img src={profilePic}></img>
+                        </div>
+                        <div className={styles.titleContainer}>
+                            <h4 className={styles.title}>Michael Berry</h4>
+                            <label className={styles.label}>47 sightings</label>
+                        </div>
+                    </div>
+                    <div className={styles.labelContainer}>
+                        <InfoLabel name='First name' content='Michael'></InfoLabel>
+                        <InfoLabel name='Last name' content='Berry'></InfoLabel>
+                        <InfoLabel name='Date of Birth' content='May 20, 1980'></InfoLabel>
+                        <InfoLabel name='Email address' content='michael.berry@gmail.com'></InfoLabel>
+                    </div>
+                </div>
+                <div className={styles.buttonContainer}>
+                    <button className={styles.button}>Logout</button>
                 </div>
             </Modal>    
-        </div>
+        // </div>
     );
 }
 export default LogoutModal;

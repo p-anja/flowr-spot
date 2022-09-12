@@ -1,18 +1,31 @@
+import internal from 'stream';
 import FlowerCard from '../flowerCard/FlowerCard';
 import styles from './FlowerList.module.scss';
 
-function FlowerList () {
+interface Flower {
+    id: number,
+    name: string,
+    latin_name: string,
+    sightings: number,
+    profile_picture: string,
+    favorite: boolean
+
+}
+
+interface IFlowerListProps {
+    flowers: Array<Flower>
+}
+function FlowerList (props: IFlowerListProps) {
 
     return(
         <div className={styles.container}>
-            <FlowerCard></FlowerCard>
-            <FlowerCard></FlowerCard>
-            <FlowerCard></FlowerCard>
-            <FlowerCard></FlowerCard>
-            <FlowerCard></FlowerCard>
-            <FlowerCard></FlowerCard>
-            <FlowerCard></FlowerCard>
-            <FlowerCard></FlowerCard>
+            {
+                props.flowers.map((flower) =>{
+                    return(
+                        <FlowerCard flower={flower}></FlowerCard>
+                    );
+                })
+            }
         </div>
     );
 }

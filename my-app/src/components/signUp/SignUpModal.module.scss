@@ -84,11 +84,17 @@
     line-height: 13px;
 
     z-index: 100;
-    bottom: 30px;
+    bottom: -30px;
     text-align: center;
 
     color: black;
 
     mix-blend-mode: normal;
     opacity: 0.5;
+    cursor: pointer;
+}
+
+.labelContainer {
+    display: flex;
+    justify-content: center;
 }
