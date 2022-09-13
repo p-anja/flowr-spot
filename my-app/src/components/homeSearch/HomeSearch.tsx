@@ -1,7 +1,7 @@
 import styles from './HomeSearch.module.scss';
 import searchPic from '../../assets/search.svg';
 
-function HomeSearch () {
+const HomeSearch = () => {
 
     return(
         <div className={styles.container}>

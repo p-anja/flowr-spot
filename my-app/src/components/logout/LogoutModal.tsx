@@ -1,5 +1,4 @@
 import Modal from 'react-modal';
-import { isPropertySignature } from 'typescript';
 import profilePic from '../../assets/profile-holder.svg';
 import xButton from '../../assets/x-button.svg';
 import InfoLabel from '../infoLabel/InfoLabel';

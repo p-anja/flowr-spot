@@ -1,5 +1,3 @@
-import { randomUUID } from 'crypto';
-import internal from 'stream';
 import FlowerCard from '../flowerCard/FlowerCard';
 import styles from './FlowerList.module.scss';
 
@@ -16,7 +14,7 @@ interface Flower {
 interface IFlowerListProps {
     flowers: Array<Flower>
 }
-function FlowerList (props: IFlowerListProps) {
+const FlowerList = (props: IFlowerListProps) => {
 
     return(
         <div className={styles.container}>

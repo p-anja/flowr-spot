@@ -13,7 +13,7 @@ interface IFlowerProps {
     }
 }
 
-function FlowerCard ({flower}: IFlowerProps) {
+const FlowerCard = ({flower}: IFlowerProps) => {
 
     const {id, name, latin_name, sightings, profile_picture, favorite} = flower;
 

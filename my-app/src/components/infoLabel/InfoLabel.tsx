@@ -5,7 +5,7 @@ interface IInfoLabel {
     content: string
 }
 
-function InfoLabel (props: IInfoLabel) {
+const InfoLabel = (props: IInfoLabel) => {
 
     return(
         <div className={styles.container}>

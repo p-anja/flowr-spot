@@ -1,6 +1,5 @@
 import Modal from 'react-modal';
 import {useForm} from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
 import styles from './SignUpModal.module.scss';
 import { userSignUp } from '../../service/User.service';
 
@@ -26,7 +25,7 @@ const customStyles = {
     modalIsOpen: boolean
   }
 
-function SignUpModal (props: ISignUpModalProps) {
+const SignUpModal = (props: ISignUpModalProps) => {
 
     const {register, handleSubmit, formState: {errors}} = useForm();
 
