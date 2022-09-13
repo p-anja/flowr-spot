@@ -1,10 +1,9 @@
 import Modal from 'react-modal';
 import {useForm} from 'react-hook-form';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import styles from './SignUpModal.module.scss';
+import { userSignUp } from '../../service/User.service';
 
-// Modal.setAppElement('#root');
  
 const customStyles = {
     content: {
@@ -30,7 +29,13 @@ const customStyles = {
 function SignUpModal (props: ISignUpModalProps) {
 
     const {register, handleSubmit, formState: {errors}} = useForm();
-    const history  = useNavigate();
+
+    const signUp = async (info: any) =>{
+        const {data} = await userSignUp(info);
+        console.log(data.auth_token)
+        localStorage.setItem('token', data.auth_token);
+        props.close(false);
+    }
 
     return(
             <Modal
@@ -40,15 +45,7 @@ function SignUpModal (props: ISignUpModalProps) {
             >
                 <h1 className={styles.title}>Create an account</h1>
                 <form onSubmit={handleSubmit((data) =>{
-                    // axios.post(axios.defaults.baseURL + '/v1/users/register', data)
-                    //     .then(res =>{
-                    //         localStorage.setItem('token', res.data.auth_token);
-                    //         props.close(false);
-                    //     })
-                    //     .catch(err =>{
-                    //         console.log(err);
-                    //     })
-                    console.log(data)
+                    signUp(data);
                 })}>
                     <div className={styles.inputContainer}>
                         <input {...register('first_name', {required: true})} placeholder='First name' className={styles.input}></input>

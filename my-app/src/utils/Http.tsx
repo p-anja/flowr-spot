@@ -10,8 +10,6 @@ enum StatusCode {
 const headers: Readonly<Record<string, string | boolean>> = {
   Accept: "application/json",
   "Content-Type": "application/json; charset=utf-8",
-//   "Access-Control-Allow-Credentials": true,
-//   "X-Requested-With": "XMLHttpRequest",
 };
 
 const injectToken = (config: AxiosRequestConfig): AxiosRequestConfig => {
@@ -22,8 +20,8 @@ const injectToken = (config: AxiosRequestConfig): AxiosRequestConfig => {
       config!.headers!.Authorization = `Bearer ${token}`;
     }
     return config;
-  } catch (error) {
-    // throw new Error(error);
+  } catch (error: any) {
+    throw new Error(error);
     return config
   }
 };
@@ -39,7 +37,6 @@ class Http {
     const http = axios.create({
       baseURL: 'https://flowrspot-api.herokuapp.com/api',
       headers,
-    //   withCredentials: true,
     });
 
     http.interceptors.request.use(injectToken, (error) => Promise.reject(error));
@@ -48,7 +45,7 @@ class Http {
       (response) => response,
       (error) => {
         const { response } = error;
-        //return this.handleError(response);
+        return this.handleError(response);
       }
     );
 
@@ -86,30 +83,30 @@ class Http {
 
   // Handle global app errors
   // We can handle generic app errors depending on the status code
-//   private handleError(error) {
-//     const { status } = error;
+  private handleError(error: any) {
+    const { status } = error;
 
-//     switch (status) {
-//       case StatusCode.InternalServerError: {
-//         // Handle InternalServerError
-//         break;
-//       }
-//       case StatusCode.Forbidden: {
-//         // Handle Forbidden
-//         break;
-//       }
-//       case StatusCode.Unauthorized: {
-//         // Handle Unauthorized
-//         break;
-//       }
-//       case StatusCode.TooManyRequests: {
-//         // Handle TooManyRequests
-//         break;
-//       }
-//     }
+    switch (status) {
+      case StatusCode.InternalServerError: {
+        // Handle InternalServerError
+        break;
+      }
+      case StatusCode.Forbidden: {
+        // Handle Forbidden
+        break;
+      }
+      case StatusCode.Unauthorized: {
+        // Handle Unauthorized
+        break;
+      }
+      case StatusCode.TooManyRequests: {
+        // Handle TooManyRequests
+        break;
+      }
+    }
 
-//     return Promise.reject(error);
-//   }
+    return Promise.reject(error);
+  }
 }
 
 export const http = new Http();

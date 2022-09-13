@@ -1,5 +1,3 @@
-import axios from 'axios';
-import {useEffect, useState} from 'react';
 import styles from './FlowerCard.module.scss';
 import star from '../../assets/star.svg';
 import starColor from '../../assets/starColor.svg';
@@ -15,51 +13,12 @@ interface IFlowerProps {
     }
 }
 
-interface User {
-    first_name: string,
-    last_name: string,
-    id: number
-}
-
 function FlowerCard ({flower}: IFlowerProps) {
 
     const {id, name, latin_name, sightings, profile_picture, favorite} = flower;
-    const [user, setUser] = useState<User | null>(null);
-
-    useEffect(() =>{
-        //fetchUser();
-    }, [])
-
-    const fetchUser = () =>{
-        axios.get(axios.defaults.baseURL + '/v1/users/me',  {
-            headers: {
-                Authorization: localStorage.getItem('token') || ''
-            }
-        })
-        .then(res =>{
-            setUser(res.data.user)
-        })
-        .catch(err =>{
-            console.log(err)
-        })
-    }
 
     const handleChange = () =>{
-        if(favorite)
-            axios.delete(axios.defaults.baseURL + '/v1/flowers/' + id + '/favorites/' + user?.id)
-            .then(res =>{
-                console.log(res.data)
-            })
-            .catch(err =>{
-                console.log(err)
-            })
-        axios.post(axios.defaults.baseURL + '/v1/flowers/' + id + '/favorites')
-            .then(res =>{
-                console.log(res.data)
-            })
-            .catch(err =>{
-                console.log(err)
-            })
+        //TO DO after API is fixed
     }
 
     return(

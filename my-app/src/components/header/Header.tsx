@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react';
-import axios from 'axios';
+import {fetchUser, User} from '../../service/User.service';
 import SignUpModal from '../signUp/SignUpModal';
 import LoginModal from '../login/LoginModal';
 import LogoutModal from '../logout/LogoutModal';
@@ -7,13 +7,7 @@ import styles from './Header.module.scss';
 import logo from '../../assets/logo.svg';
 import profilePic from '../../assets/profile-holder.svg';
 
-interface User {
-    first_name: string,
-    last_name: string,
-    id: number
-}
-
-function Header () {
+const Header = () => {
     const [modalIsOpen, setIsOpen] = useState(false);
     const [loginModalIsOpen, setLoginModalIsOpen] = useState(false);
     const [logoutModalIsOpen, setLogoutModalIsOpen] = useState(false);
@@ -21,22 +15,13 @@ function Header () {
 
 
     useEffect(() =>{
-        if(!!localStorage.getItem('token'))
-            fetchUser();
+        fetchData();
     }, []);
 
-    const fetchUser = () =>{
-        axios.get(axios.defaults.baseURL + '/v1/users/me',  {
-            headers: {
-                Authorization: localStorage.getItem('token') || ''
-            }
-        })
-        .then(res =>{
-            setUser(res.data.user)
-        })
-        .catch(err =>{
-            console.log(err)
-        })
+
+    const fetchData  = async () =>{
+        const {data} = await fetchUser();
+        setUser(data.user);
     }
 
     const openSignUpModal = () => {
@@ -51,7 +36,6 @@ function Header () {
     const authorized = () => {
         return localStorage.getItem('token') !== null;
     }
-
 
     return(
         <header className={styles.header}>
