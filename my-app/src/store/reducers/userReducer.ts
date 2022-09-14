@@ -30,6 +30,12 @@ export const userReducer = (state = initialState, action: any) =>{
                 token: {},
                 isAuthorized: false
             };
+        case ActionTypes.USER_SIGNUP:
+            return{
+                ...state,
+                token: action.payload,
+                isAuthorized: true
+            };
         default:
             return state;
 

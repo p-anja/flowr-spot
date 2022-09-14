@@ -1,5 +1,5 @@
 import { ActionTypes } from "../constants/actionTypes";
-import {fetchUser, userLogin} from '../../service/User.service';
+import {fetchUser, userLogin, userSignUp} from '../../service/User.service';
 
 export const setUser = () => async (dispatch: any) => {
 
@@ -31,3 +31,13 @@ export const logoutUser = () => (dispatch: any) => {
     })
 }
 
+export const signUpUser = (info: any) => async (dispatch: any) => {
+    
+    const {data} = await userSignUp(info);
+    localStorage.setItem('token', data.auth_token);
+
+    dispatch({
+        type: ActionTypes.USER_SIGNUP,
+        payload: data.auth_token,
+    })
+}

@@ -1,7 +1,8 @@
 import Modal from 'react-modal';
 import {useForm} from 'react-hook-form';
 import styles from './SignUpModal.module.scss';
-import { userSignUp } from '../../service/User.service';
+import { signUpUser } from '../../store/actions/userActions';
+import { useAppDispatch } from '../../utils/hooks';
 
  
 const customStyles = {
@@ -27,14 +28,8 @@ const customStyles = {
 
 const SignUpModal = (props: ISignUpModalProps) => {
 
+    const dispatch = useAppDispatch();
     const {register, handleSubmit, formState: {errors}} = useForm();
-
-    const signUp = async (info: any) =>{
-        const {data} = await userSignUp(info);
-        console.log(data.auth_token)
-        localStorage.setItem('token', data.auth_token);
-        props.close(false);
-    }
 
     return(
             <Modal
@@ -44,7 +39,8 @@ const SignUpModal = (props: ISignUpModalProps) => {
             >
                 <h1 className={styles.title}>Create an account</h1>
                 <form onSubmit={handleSubmit((data) =>{
-                    signUp(data);
+                    dispatch(signUpUser(data));
+                    props.close(false);
                 })}>
                     <div className={styles.inputContainer}>
                         <input {...register('first_name', {required: true})} placeholder='First name' className={styles.input}></input>
