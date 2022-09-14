@@ -1,10 +1,10 @@
 import Modal from 'react-modal';
 import profilePic from '../../assets/profile-holder.svg';
 import xButton from '../../assets/x-button.svg';
+import { logoutUser } from '../../store/actions/userActions';
+import { useAppDispatch } from '../../utils/hooks';
 import InfoLabel from '../infoLabel/InfoLabel';
 import styles from './LogoutModal.module.scss';
-
-Modal.setAppElement('#root');
 
 const customStyles = {
     content: {
@@ -27,8 +27,10 @@ interface ILogoutModalProps {
 
 const LogoutModal =  (props: ILogoutModalProps) => {
 
+    const dispatch = useAppDispatch();
+
     const logout = () =>{
-        localStorage.removeItem('token');
+        dispatch(logoutUser());
         props.close(false);
     }
 

@@ -1,7 +1,8 @@
 import Modal from 'react-modal';
 import {useForm} from 'react-hook-form';
 import styles from './LoginModal.module.scss';
-import { userLogin } from '../../service/User.service';
+import { useAppDispatch, useAppSelector } from '../../utils/hooks';
+import { loginUser } from '../../store/actions/userActions';
 
 const customStyles = {
     content: {
@@ -26,13 +27,10 @@ interface ILoginModalProps {
 
 const LoginModal = (props: ILoginModalProps) => {
     
+    const dispatch = useAppDispatch();
+    const userToken = useAppSelector(((state) => state.auth.token));
     const {register, handleSubmit, formState: {errors}} = useForm();
 
-    const login = async (info: any) =>{
-        const {data} = await userLogin(info);
-        localStorage.setItem('token', data.auth_token);
-        props.close(false);
-    }
     return(
             <Modal
             isOpen={props.modalIsOpen}
@@ -41,7 +39,8 @@ const LoginModal = (props: ILoginModalProps) => {
             >
                 <h1 className={styles.title}>Welcome Back</h1>
                 <form onSubmit={handleSubmit((data) =>{
-                    login(data);
+                    dispatch(loginUser(data));
+                    props.close(false);
                 })}>
                     <div className={styles.inputContainer}>
                         <input {...register('email', {required: true})} placeholder='Email Address' type='text' className={styles.input2}></input>

@@ -10,7 +10,6 @@ const HomeSearch = () => {
             <div className={styles.inputContainer}>
                 <input className={styles.searchInput} placeholder="Looking for something specific?"></input>
                 <img src={searchPic} className={styles.searchButton}></img>
-                {/* <InputField className={styles.searchInput} placeholder="Looking for something specific?"></InputField> */}
             </div>
         </div>
     );

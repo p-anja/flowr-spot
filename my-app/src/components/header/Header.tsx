@@ -8,18 +8,18 @@ import profilePic from '../../assets/profile-holder.svg';
 import {setUser} from '../../store/actions/userActions';
 import { useAppDispatch, useAppSelector } from '../../utils/hooks';
 
-const authorized = () => {
-    return localStorage.getItem('token') !== null;
-}
+// const authorized = () => {
+//     return localStorage.getItem('token') !== null;
+// }
 
 const Header = () => {
     const dispatch: any = useAppDispatch()
     const user = useAppSelector((state) => state.auth.user)
+    const isAuthorized = useAppSelector((state) => state.auth.isAuthorized);
 
     const [modalIsOpen, setIsOpen] = useState(false);
     const [loginModalIsOpen, setLoginModalIsOpen] = useState(false);
     const [logoutModalIsOpen, setLogoutModalIsOpen] = useState(false);
-    const isAuthorized = authorized();
 
     useEffect(() =>{
         if(isAuthorized)
@@ -48,10 +48,10 @@ const Header = () => {
                     <a className={styles.headerButton}>Flowers</a>
                     <a className={styles.headerButton}>Latest sightings</a>
                     <a className={styles.headerButton}>Favourites</a>
-                    { !authorized() && <a className={styles.headerLoginButton} onClick={openLoginModal}>Login</a>}
-                    { !authorized() && <button className={styles.newAccountButton} onClick={openSignUpModal}>New account</button>}
-                    { authorized() && user && <a className={styles.headerButton} onClick={openLogoutModal}>{user.first_name} {user.last_name}</a>}
-                    { authorized() && user && <img src={profilePic} className={styles.profilePicture} onClick={openLogoutModal}></img>}
+                    { !isAuthorized && <a className={styles.headerLoginButton} onClick={openLoginModal}>Login</a>}
+                    { !isAuthorized && <button className={styles.newAccountButton} onClick={openSignUpModal}>New account</button>}
+                    { isAuthorized && user && <a className={styles.headerButton} onClick={openLogoutModal}>{user.first_name} {user.last_name}</a>}
+                    { isAuthorized && user && <img src={profilePic} className={styles.profilePicture} onClick={openLogoutModal}></img>}
                     <SignUpModal close={setIsOpen} modalIsOpen={modalIsOpen}></SignUpModal>
                     <LoginModal close={setLoginModalIsOpen} modalIsOpen={loginModalIsOpen}></LoginModal>
                     <LogoutModal close={setLogoutModalIsOpen} modalIsOpen={logoutModalIsOpen}></LogoutModal>
