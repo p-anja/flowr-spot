@@ -13,15 +13,21 @@ export const setUser = () => async (dispatch: any) => {
 
 export const loginUser = (info: any) => async (dispatch: any) => {
 
-
-    const {data} = await userLogin(info);  
-    localStorage.setItem('token', data.auth_token);
-
-    dispatch({
-        type: ActionTypes.USER_LOGIN,
-        payload: data.auth_token,
-    })
+    try{
+        const {data} = await userLogin(info);  
+        localStorage.setItem('token', data.auth_token);
     
+        dispatch({
+            type: ActionTypes.USER_LOGIN,
+            payload: data.auth_token,
+        })
+    }
+    catch(err){
+        dispatch({
+            type: ActionTypes.ERROR,
+            payload: err,
+        })
+    }
 }
 
 export const logoutUser = () => (dispatch: any) => {

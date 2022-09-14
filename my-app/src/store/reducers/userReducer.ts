@@ -22,7 +22,8 @@ export const userReducer = (state = initialState, action: any) =>{
             return {
                 ...state,
                 token: action.payload,
-                isAuthorized: true
+                isAuthorized: true,
+                errorMessage: null
             };
         case ActionTypes.USER_LOGOUT:
             return {
