@@ -1,9 +1,13 @@
 import Modal from 'react-modal';
 import {useForm} from 'react-hook-form';
-import styles from './SignUpModal.module.scss';
 import { signUpUser } from '../../store/actions/userActions';
-import { useAppDispatch } from '../../utils/hooks';
+import { useAppDispatch, useAppSelector } from '../../utils/hooks';
+import ErrorLabel from '../errorLabel/ErrorLabel';
+import styles from './SignUpModal.module.scss';
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
+Modal.setAppElement('#root');
  
 const customStyles = {
     content: {
@@ -29,7 +33,13 @@ const customStyles = {
 const SignUpModal = (props: ISignUpModalProps) => {
 
     const dispatch = useAppDispatch();
+    const message = useAppSelector((state) => state.auth.errorMessage);
     const {register, handleSubmit, formState: {errors}} = useForm();
+
+    useEffect(() =>{
+        if(message === null)
+            props.close(false);
+    }, [message])
 
     return(
             <Modal
@@ -39,8 +49,8 @@ const SignUpModal = (props: ISignUpModalProps) => {
             >
                 <h1 className={styles.title}>Create an account</h1>
                 <form onSubmit={handleSubmit((data) =>{
-                    dispatch(signUpUser(data));
-                    props.close(false);
+
+                       dispatch(signUpUser(data));
                 })}>
                     <div className={styles.inputContainer}>
                         <input {...register('first_name', {required: true})} placeholder='First name' className={styles.input}></input>
@@ -54,6 +64,9 @@ const SignUpModal = (props: ISignUpModalProps) => {
                     </div>
                     <div className={styles.inputContainer}>
                         <input {...register('password', {required: true})} placeholder='Password' type='password' className={styles.input2}></input>
+                    </div>
+                    <div className={styles.inputContainer}>
+                        { message && <ErrorLabel content={message}></ErrorLabel>}
                     </div>
                     <div className={styles.inputContainer}>
                         <button type='submit' className={styles.button}>Create account</button>

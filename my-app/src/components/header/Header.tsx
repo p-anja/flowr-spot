@@ -8,12 +8,8 @@ import profilePic from '../../assets/profile-holder.svg';
 import {setUser} from '../../store/actions/userActions';
 import { useAppDispatch, useAppSelector } from '../../utils/hooks';
 
-// const authorized = () => {
-//     return localStorage.getItem('token') !== null;
-// }
-
 const Header = () => {
-    const dispatch: any = useAppDispatch()
+    const dispatch = useAppDispatch()
     const user = useAppSelector((state) => state.auth.user)
     const isAuthorized = useAppSelector((state) => state.auth.isAuthorized);
 

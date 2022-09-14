@@ -28,7 +28,6 @@ interface ILoginModalProps {
 const LoginModal = (props: ILoginModalProps) => {
     
     const dispatch = useAppDispatch();
-    const userToken = useAppSelector(((state) => state.auth.token));
     const {register, handleSubmit, formState: {errors}} = useForm();
 
     return(

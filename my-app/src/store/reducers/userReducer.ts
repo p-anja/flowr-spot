@@ -7,7 +7,8 @@ const initialState = {
         last_name: ''
     },
     token: {},
-    isAuthorized: false
+    isAuthorized: false,
+    errorMessage: null
 }
 export const userReducer = (state = initialState, action: any) =>{
 
@@ -34,8 +35,14 @@ export const userReducer = (state = initialState, action: any) =>{
             return{
                 ...state,
                 token: action.payload,
-                isAuthorized: true
+                isAuthorized: true,
+                errorMessage: null
             };
+            case ActionTypes.ERROR:
+                return{
+                    ...state,
+                    errorMessage: action.payload.data.error
+                };
         default:
             return state;
 
