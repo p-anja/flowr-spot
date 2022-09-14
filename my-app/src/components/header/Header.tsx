@@ -7,6 +7,7 @@ import logo from '../../assets/logo.svg';
 import profilePic from '../../assets/profile-holder.svg';
 import {setUser} from '../../store/actions/userActions';
 import { useAppDispatch, useAppSelector } from '../../utils/hooks';
+import NotificationModal from '../notificationModal/NotificationModal';
 
 const Header = () => {
     const dispatch = useAppDispatch()
@@ -16,6 +17,7 @@ const Header = () => {
     const [modalIsOpen, setIsOpen] = useState(false);
     const [loginModalIsOpen, setLoginModalIsOpen] = useState(false);
     const [logoutModalIsOpen, setLogoutModalIsOpen] = useState(false);
+    const [showNotificationModal, setNotificationModal] = useState(false);
 
     useEffect(() =>{
         if(isAuthorized)
@@ -33,7 +35,7 @@ const Header = () => {
         setLogoutModalIsOpen(true);
     }
 
-
+    console.log(showNotificationModal)
     return(
         <header className={styles.header}>
                 <div className={styles.logoContainer}>
@@ -48,7 +50,8 @@ const Header = () => {
                     { !isAuthorized && <button className={styles.newAccountButton} onClick={openSignUpModal}>New account</button>}
                     { isAuthorized && user && <a className={styles.headerButton} onClick={openLogoutModal}>{user.first_name} {user.last_name}</a>}
                     { isAuthorized && user && <img src={profilePic} className={styles.profilePicture} onClick={openLogoutModal}></img>}
-                    <SignUpModal close={setIsOpen} modalIsOpen={modalIsOpen}></SignUpModal>
+                    <SignUpModal close={setIsOpen} successfully={setNotificationModal} modalIsOpen={modalIsOpen}></SignUpModal>
+                    { !modalIsOpen && isAuthorized && <NotificationModal close={setNotificationModal} content='Congratulations! You have successfully signed up for FlowrSpot!'  modalIsOpen={showNotificationModal}></NotificationModal>}
                     <LoginModal close={setLoginModalIsOpen} modalIsOpen={loginModalIsOpen}></LoginModal>
                     <LogoutModal close={setLogoutModalIsOpen} modalIsOpen={logoutModalIsOpen}></LogoutModal>
                 </div>

@@ -22,7 +22,7 @@ const customStyles = {
   };
 interface ILogoutModalProps {
     close: (value: boolean) => void, 
-    modalIsOpen: boolean,
+    modalIsOpen: boolean
 }
 
 const LogoutModal =  (props: ILogoutModalProps) => {

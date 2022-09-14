@@ -15,7 +15,6 @@ const headers: Readonly<Record<string, string | boolean>> = {
 const injectToken = (config: AxiosRequestConfig): AxiosRequestConfig => {
   try {
     const token = localStorage.getItem("token");
-    // const token = useAppSelector((state) => state.auth.token);
 
     if (token != null) {
       config!.headers!.Authorization = `Bearer ${token}`;

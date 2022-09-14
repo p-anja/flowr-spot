@@ -4,8 +4,8 @@ import { signUpUser } from '../../store/actions/userActions';
 import { useAppDispatch, useAppSelector } from '../../utils/hooks';
 import ErrorLabel from '../errorLabel/ErrorLabel';
 import styles from './SignUpModal.module.scss';
-import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
+import NotificationModal from '../notificationModal/NotificationModal';
 
 Modal.setAppElement('#root');
  
@@ -27,7 +27,8 @@ const customStyles = {
 
   interface ISignUpModalProps {
     close: (value: boolean) => void,
-    modalIsOpen: boolean
+    modalIsOpen: boolean,
+    successfully: (value: boolean) => void
   }
 
 const SignUpModal = (props: ISignUpModalProps) => {
@@ -39,6 +40,7 @@ const SignUpModal = (props: ISignUpModalProps) => {
     useEffect(() =>{
         if(message === null)
             props.close(false);
+            props.successfully(true);
     }, [message])
 
     return(
