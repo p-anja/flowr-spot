@@ -4,27 +4,8 @@ import { closeModal, signUpUser } from '../../store/actions/userActions';
 import { useAppDispatch, useAppSelector } from '../../utils/hooks';
 import ErrorLabel from '../errorLabel/ErrorLabel';
 import styles from './SignUpModal.module.scss';
-import { useEffect, useState } from 'react';
-import NotificationModal from '../notificationModal/NotificationModal';
 
 Modal.setAppElement('#root');
-
-const content = 'Congratulations! You have successfully signed up for FlowrSpot!'
-const customStyles = {
-    content: {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
-      height: '410px',
-      width: '440px',
-      borderRadius: '3px',
-      boxShadow: '0px 15px 30px rgba(0, 0, 0, 0.05)',
-      overflow: 'visible'
-    },
-  };
 
   interface ISignUpModalProps {
     modalIsOpen: boolean
@@ -82,5 +63,22 @@ const SignUpModal = (props: ISignUpModalProps) => {
             </Modal>
     );
 }
+
+const content = 'Congratulations! You have successfully signed up for FlowrSpot!'
+const customStyles = {
+    content: {
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)',
+      height: '410px',
+      width: '440px',
+      borderRadius: '3px',
+      boxShadow: '0px 15px 30px rgba(0, 0, 0, 0.05)',
+      overflow: 'visible'
+    },
+  };
 
 export default SignUpModal;

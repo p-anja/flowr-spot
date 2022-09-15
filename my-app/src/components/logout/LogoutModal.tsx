@@ -6,21 +6,6 @@ import { useAppDispatch } from '../../utils/hooks';
 import InfoLabel from '../infoLabel/InfoLabel';
 import styles from './LogoutModal.module.scss';
 
-const content = 'You are successfully logged out.'
-const customStyles = {
-    content: {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
-      height: '550px',
-      width: '590px',
-      borderRadius: '3px',
-      boxShadow: '0px 15px 30px rgba(0, 0, 0, 0.05)',
-    },
-  };
 interface ILogoutModalProps {
     modalIsOpen: boolean
 }
@@ -64,4 +49,21 @@ const LogoutModal =  (props: ILogoutModalProps) => {
             </Modal>    
     );
 }
+
+const content = 'You are successfully logged out.'
+const customStyles = {
+    content: {
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)',
+      height: '550px',
+      width: '590px',
+      borderRadius: '3px',
+      boxShadow: '0px 15px 30px rgba(0, 0, 0, 0.05)',
+    },
+  };
+  
 export default LogoutModal;

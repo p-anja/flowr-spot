@@ -16,13 +16,6 @@ const Header = () => {
     const user = useAppSelector((state) => state.auth.user)
     const isAuthorized = useAppSelector((state) => state.auth.isAuthorized);
     const modalStatus = useAppSelector((state) => state.auth.modalStatus);
-    const modalContent = useAppSelector((state) => state.auth.content);
-
-    const [modalIsOpen, setIsOpen] = useState(false);
-    const [loginModalIsOpen, setLoginModalIsOpen] = useState(false);
-    const [logoutModalIsOpen, setLogoutModalIsOpen] = useState(false);
-    const [showNotificationModalSignUp, setNotificationModalSignUp] = useState(false);
-    const [showNotificationModalLogin, setNotificationModalLogin] = useState(false);
 
     useEffect(() =>{
         if(isAuthorized)
@@ -35,6 +28,9 @@ const Header = () => {
     }
     const openLoginModal = () => {
         dispatch(openModal(ModalStatus.LogIn))
+    }
+    const openLogoutModal = () => {
+        dispatch(openModal(ModalStatus.LogOut))
     }
 
     const checkModalStatus = (modalStatus === ModalStatus.LogInSuccess) || (modalStatus === ModalStatus.SignUpSuccess) || (modalStatus === ModalStatus.LogOutSuccess);
@@ -51,8 +47,8 @@ const Header = () => {
                     <a className={styles.headerButton}>Favourites</a>
                     { !isAuthorized && <a className={styles.headerLoginButton} onClick={openLoginModal}>Login</a>}
                     { !isAuthorized && <button className={styles.newAccountButton} onClick={openSignUpModal}>New account</button>}
-                    { isAuthorized && user && <a className={styles.headerButton} onClick={() => dispatch(openModal(ModalStatus.LogOut))}>{user.first_name} {user.last_name}</a>}
-                    { isAuthorized && user && <img src={profilePic} className={styles.profilePicture} onClick={() => dispatch(openModal(ModalStatus.LogOut))}></img>}
+                    { isAuthorized && user && <a className={styles.headerButton} onClick={openLogoutModal}>{user.first_name} {user.last_name}</a>}
+                    { isAuthorized && user && <img src={profilePic} className={styles.profilePicture} onClick={openLogoutModal}></img>}
                     <SignUpModal modalIsOpen={modalStatus === ModalStatus.SignUp}></SignUpModal>
                     <LoginModal modalIsOpen={modalStatus === ModalStatus.LogIn}></LoginModal>
                     <LogoutModal modalIsOpen={modalStatus === ModalStatus.LogOut}></LogoutModal>

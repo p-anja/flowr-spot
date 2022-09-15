@@ -4,26 +4,8 @@ import styles from './LoginModal.module.scss';
 import { useAppDispatch, useAppSelector } from '../../utils/hooks';
 import { loginUser } from '../../store/actions/userActions';
 import ErrorLabel from '../errorLabel/ErrorLabel';
-import { useEffect } from 'react';
 import { closeModal } from '../../store/actions/userActions';
 
-
-const content = 'Congratulations! You have successfully logged in for FlowrSpot!'
-const customStyles = {
-    content: {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
-      height: '290px',
-      width: '440px',
-      borderRadius: '3px',
-      boxShadow: '0px 15px 30px rgba(0, 0, 0, 0.05)',
-      overflow: 'visible'
-    },
-  };
 
 interface ILoginModalProps {
     modalIsOpen: boolean
@@ -34,15 +16,7 @@ const LoginModal = (props: ILoginModalProps) => {
     const dispatch: any = useAppDispatch();
     const message = useAppSelector((state) => state.auth.errorMessage);
     const {register, handleSubmit, formState: {errors}} = useForm();
-
-    // useEffect(() =>{
-    //     console.log(message)
-
-
-    //         if(message !== null) return;
-    //         props.closeWithNotification();
-    // }, [message])
-
+    
     return(
             <Modal
             isOpen={props.modalIsOpen}
@@ -72,4 +46,22 @@ const LoginModal = (props: ILoginModalProps) => {
             </Modal>
     );
 }
+
+const content = 'Congratulations! You have successfully logged in for FlowrSpot!'
+
+const customStyles = {
+    content: {
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)',
+      height: '290px',
+      width: '440px',
+      borderRadius: '3px',
+      boxShadow: '0px 15px 30px rgba(0, 0, 0, 0.05)',
+      overflow: 'visible'
+    },
+  };
 export default LoginModal;
