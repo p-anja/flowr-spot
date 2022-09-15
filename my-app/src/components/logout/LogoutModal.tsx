@@ -1,11 +1,12 @@
 import Modal from 'react-modal';
 import profilePic from '../../assets/profile-holder.svg';
 import xButton from '../../assets/x-button.svg';
-import { logoutUser } from '../../store/actions/userActions';
+import { closeModal, logoutUser } from '../../store/actions/userActions';
 import { useAppDispatch } from '../../utils/hooks';
 import InfoLabel from '../infoLabel/InfoLabel';
 import styles from './LogoutModal.module.scss';
 
+const content = 'You are successfully logged out.'
 const customStyles = {
     content: {
       top: '50%',
@@ -21,17 +22,15 @@ const customStyles = {
     },
   };
 interface ILogoutModalProps {
-    close: (value: boolean) => void, 
     modalIsOpen: boolean
 }
 
 const LogoutModal =  (props: ILogoutModalProps) => {
 
-    const dispatch = useAppDispatch();
+    const dispatch: any = useAppDispatch();
 
     const logout = () =>{
-        dispatch(logoutUser());
-        props.close(false);
+        dispatch(logoutUser(content));
     }
 
     return(
@@ -41,7 +40,7 @@ const LogoutModal =  (props: ILogoutModalProps) => {
             >
                 <div className={styles.container}>
                     <div className={styles.xButtonContainer}>
-                        <img onClick={() => props.close(false)} src={xButton} className={styles.buttonImage}></img>
+                        <img onClick={() => dispatch(closeModal())} src={xButton} className={styles.buttonImage}></img>
                     </div>
                     <div className={styles.container1}>
                         <div className={styles.imageContainer}>

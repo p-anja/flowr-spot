@@ -1,6 +1,6 @@
 import Modal from 'react-modal';
 import {useForm} from 'react-hook-form';
-import { signUpUser } from '../../store/actions/userActions';
+import { closeModal, signUpUser } from '../../store/actions/userActions';
 import { useAppDispatch, useAppSelector } from '../../utils/hooks';
 import ErrorLabel from '../errorLabel/ErrorLabel';
 import styles from './SignUpModal.module.scss';
@@ -8,7 +8,8 @@ import { useEffect, useState } from 'react';
 import NotificationModal from '../notificationModal/NotificationModal';
 
 Modal.setAppElement('#root');
- 
+
+const content = 'Congratulations! You have successfully signed up for FlowrSpot!'
 const customStyles = {
     content: {
       top: '50%',
@@ -26,32 +27,25 @@ const customStyles = {
   };
 
   interface ISignUpModalProps {
-    close: (value: boolean) => void,
-    modalIsOpen: boolean,
-    successfully: (value: boolean) => void
+    modalIsOpen: boolean
   }
 
 const SignUpModal = (props: ISignUpModalProps) => {
 
-    const dispatch = useAppDispatch();
+    const dispatch: any = useAppDispatch();
     const message = useAppSelector((state) => state.auth.errorMessage);
     const {register, handleSubmit, formState: {errors}} = useForm();
-
-    useEffect(() =>{
-        if(message === null)
-            props.close(false);
-            props.successfully(true);
-    }, [message])
 
     return(
             <Modal
             isOpen={props.modalIsOpen}
             style={customStyles}
-            onRequestClose={() => props.close(false)}
+            onRequestClose={() => dispatch(closeModal())}
             >
                 <h1 className={styles.title}>Create an account</h1>
                 <form onSubmit={handleSubmit((data) =>{
-                       dispatch(signUpUser(data));
+                       dispatch(signUpUser(data, content));
+
                 })}>
                     <div className={styles.inputContainer}>
                         <input {...register('first_name', {required: true, pattern: /[A-Za-z]/ })} placeholder='First name' className={styles.input}></input>
@@ -83,7 +77,7 @@ const SignUpModal = (props: ISignUpModalProps) => {
                     </div>
                 </form>
                 <div className={styles.labelContainer}>
-                    <label className={styles.label} onClick={() => props.close(false)}>I don't want to register</label>
+                    <label className={styles.label} onClick={() => dispatch(closeModal())}>I don't want to register</label>
                 </div>
             </Modal>
     );

@@ -1,4 +1,6 @@
 import Modal from 'react-modal';
+import { closeModal } from '../../store/actions/userActions';
+import { useAppDispatch, useAppSelector } from '../../utils/hooks';
 import styles from './NotificationModal.module.scss';
 
 const customStyles = {
@@ -18,21 +20,22 @@ const customStyles = {
   };
 
 interface INotificationModalProps {
-    close: (value: boolean) => void,
-    modalIsOpen: boolean,
-    content: string
+    modalIsOpen: boolean
 }
 
 const NotificationModal = (props: INotificationModalProps) =>{
+    const dispatch = useAppDispatch();
+    const content = useAppSelector((state) => state.auth.content);
+
     return(
         <Modal 
         isOpen={props.modalIsOpen}
         style={customStyles}
-        onRequestClose={() => props.close(false)}
+        onRequestClose={() => dispatch(closeModal())}
         >
             <div className={styles.container}>
-                <label className={styles.label}>{props.content}</label>
-                <button className={styles.button} onClick={() => props.close(false)}>OK</button>
+                <label className={styles.label}>{content}</label>
+                <button className={styles.button} onClick={() => dispatch(closeModal())}>OK</button>
             </div>
         </Modal>
     );

@@ -5,7 +5,10 @@ import { useAppDispatch, useAppSelector } from '../../utils/hooks';
 import { loginUser } from '../../store/actions/userActions';
 import ErrorLabel from '../errorLabel/ErrorLabel';
 import { useEffect } from 'react';
+import { closeModal } from '../../store/actions/userActions';
 
+
+const content = 'Congratulations! You have successfully logged in for FlowrSpot!'
 const customStyles = {
     content: {
       top: '50%',
@@ -23,29 +26,32 @@ const customStyles = {
   };
 
 interface ILoginModalProps {
-    close: (value: boolean) => void,
     modalIsOpen: boolean
 }
 
 const LoginModal = (props: ILoginModalProps) => {
-    
-    const dispatch = useAppDispatch();
+
+    const dispatch: any = useAppDispatch();
     const message = useAppSelector((state) => state.auth.errorMessage);
     const {register, handleSubmit, formState: {errors}} = useForm();
 
-    useEffect(() =>{
-        if(message === null)
-            props.close(false);
-    }, [message])
+    // useEffect(() =>{
+    //     console.log(message)
+
+
+    //         if(message !== null) return;
+    //         props.closeWithNotification();
+    // }, [message])
+
     return(
             <Modal
             isOpen={props.modalIsOpen}
             style={customStyles}
-            onRequestClose={() => props.close(false)}
+            onRequestClose={() => dispatch(closeModal())}
             >
                 <h1 className={styles.title}>Welcome Back</h1>
                 <form onSubmit={handleSubmit((data) =>{
-                    dispatch(loginUser(data));
+                    dispatch(loginUser(data, content));
                 })}>
                     <div className={styles.inputContainer}>
                         <input {...register('email', {required: true})} placeholder='Email Address' type='text' className={styles.input2}></input>
@@ -61,7 +67,7 @@ const LoginModal = (props: ILoginModalProps) => {
                     </div>
                 </form>
                 <div className={styles.labelContainer}>
-                    <label className={styles.label} onClick={() => props.close(false)}>I don't want to login</label>
+                    <label className={styles.label} onClick={() => dispatch(closeModal())}>I don't want to login</label>
                 </div>
             </Modal>
     );

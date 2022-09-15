@@ -1,5 +1,6 @@
 import { ActionTypes } from "../constants/actionTypes";
 import {fetchUser, userLogin, userSignUp} from '../../service/User.service';
+import ModalStatus from "../../enum/ModalStatus";
 
 export const setUser = () => async (dispatch: any) => {
 
@@ -11,7 +12,7 @@ export const setUser = () => async (dispatch: any) => {
     })
 }
 
-export const loginUser = (info: any) => async (dispatch: any) => {
+export const loginUser = (info: any, content: any) => async (dispatch: any) => {
 
     try{
         const {data} = await userLogin(info);  
@@ -19,10 +20,14 @@ export const loginUser = (info: any) => async (dispatch: any) => {
     
         dispatch({
             type: ActionTypes.USER_LOGIN,
-            payload: data.auth_token,
+            payload: {
+                token: data.auth_token,
+                content
+            }
         })
     }
     catch(err){
+
         dispatch({
             type: ActionTypes.ERROR,
             payload: err,
@@ -30,23 +35,27 @@ export const loginUser = (info: any) => async (dispatch: any) => {
     }
 }
 
-export const logoutUser = () => (dispatch: any) => {
+export const logoutUser = (content: any) => (dispatch: any) => {
 
     localStorage.removeItem('token');
 
     dispatch({
-        type: ActionTypes.USER_LOGOUT
+        type: ActionTypes.USER_LOGOUT,
+        payload: content
     })
 }
 
-export const signUpUser = (info: any) => async (dispatch: any) => {
+export const signUpUser = (info: any, content: any) => async (dispatch: any) => {
     try{
         const {data} = await userSignUp(info);
         localStorage.setItem('token', data.auth_token);
 
         dispatch({
             type: ActionTypes.USER_SIGNUP,
-            payload: data.auth_token,
+            payload: {
+                token: data.auth_token,
+                content
+            }
         })
     }
     catch(err){
@@ -55,4 +64,21 @@ export const signUpUser = (info: any) => async (dispatch: any) => {
             payload: err,
         })
     }
+}
+
+export const openModal = (status: ModalStatus) =>  {
+
+    return {
+        type: ActionTypes.OPEN_MODAL,
+        payload: status
+    }
+
+}
+
+export const closeModal = () =>  {
+
+    return {
+        type: ActionTypes.CLOSE_MODAL
+    }
+
 }

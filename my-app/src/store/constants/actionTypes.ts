@@ -3,5 +3,7 @@ export const ActionTypes = {
     USER_LOGIN: "USER_LOGIN",
     USER_LOGOUT: "USER_LOGOUT",
     USER_SIGNUP: "USER_SIGNUP",
-    ERROR: "ERROR"
+    ERROR: "ERROR",
+    OPEN_MODAL: "OPEN_MODAL",
+    CLOSE_MODAL: "CLOSE_MODAL"
 }
