@@ -14,12 +14,12 @@ interface Flower {
 interface IFlowerListProps {
     flowers: Array<Flower>
 }
-const FlowerList = (props: IFlowerListProps) => {
+const FlowerList = ({flowers}: IFlowerListProps) => {
 
     return(
         <div className={styles.container}>
             {
-                props.flowers.map((flower) =>{
+                flowers.map((flower) =>{
                     return(
                         <FlowerCard flower={flower} key={flower.id}></FlowerCard>
                     );

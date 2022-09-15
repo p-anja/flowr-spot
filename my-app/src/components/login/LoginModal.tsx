@@ -16,8 +16,8 @@ const LoginModal = (props: ILoginModalProps) => {
     const dispatch: any = useAppDispatch();
     const message = useAppSelector((state) => state.auth.errorMessage);
     const {register, handleSubmit, formState: {errors}} = useForm();
-    
     return(
+        <div className={styles.container}>
             <Modal
             isOpen={props.modalIsOpen}
             style={customStyles}
@@ -44,6 +44,7 @@ const LoginModal = (props: ILoginModalProps) => {
                     <label className={styles.label} onClick={() => dispatch(closeModal())}>I don't want to login</label>
                 </div>
             </Modal>
+        </div>
     );
 }
 

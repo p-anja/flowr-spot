@@ -1,3 +1,4 @@
+@import '../../styles/breakpoints.module.scss';
 
 .container {
     height: 500px;
@@ -23,6 +24,19 @@
     line-height: 40px;
 
     text-align: center;
+
+    @media only screen and (max-width: $breakpoint-900p) {
+        font-size: 35px;
+    }
+    @media only screen and (max-width: $breakpoint-large) {
+        font-size: 30px;
+    }
+    @media only screen and (max-width: $breakpoint-small) {
+        font-size: 25px;
+    }
+    @media only screen and (max-width: $breakpoint-smallest) {
+        font-size: 20px;
+    }
 }
 
 .searchLabel {
@@ -38,6 +52,16 @@
 
     mix-blend-mode: normal;
     opacity: 0.7;
+
+    @media only screen and (max-width: $breakpoint-large) {
+        font-size: 12px;
+    }
+    @media only screen and (max-width: $breakpoint-small) {
+        font-size: 10px;
+    }
+    @media only screen and (max-width: $breakpoint-smallest) {
+        font-size: 10px;
+    }
 }
 .inputContainer{
     display: flex;
@@ -53,10 +77,27 @@
     height: 70px;
     width: 100%;
     padding-left: 20px;
+
+    @media only screen and (max-width: $breakpoint-900p) {
+        width: 500px;
+        height: 50px;
+    }
+
+    @media only screen and (max-width: $breakpoint-large) {
+        width: 400px;
+        height: 40px;
+    }
+    @media only screen and (max-width: $breakpoint-small) {
+        width: 300px;
+        height: 30px;
+    }
+    @media only screen and (max-width: $breakpoint-smallest) {
+        width: 200px;
+        height: 20px;
+    }
 }
 
 .searchInput::placeholder {
-    // font-family: 'Ubuntu';
     font-style: normal;
     font-weight: 300;
     font-size: 18px;
@@ -68,6 +109,24 @@
     height: 20px;
     left: 20px;
     top: 25px;
+
+    @media only screen and (max-width: $breakpoint-900p) {
+        top: 19px;
+        font-size: 15px;
+    }
+
+    @media only screen and (max-width: $breakpoint-large) {
+        top: 15px;
+        font-size: 12px;
+    }
+    @media only screen and (max-width: $breakpoint-small) {
+        top: 12px;
+        font-size: 10px;
+    }
+    @media only screen and (max-width: $breakpoint-smallest) {
+        top: 7px;
+        font-size: 8px;
+    }
 }
 
 .searchButton {
@@ -76,4 +135,30 @@
     height: 20px;
     right: 20px;
     top: 25px;
+
+    @media only screen and (max-width: $breakpoint-900p) {
+        width: 15px;
+        height: 15px;
+        right: 50px;
+        top: 20px;
+    }
+
+    @media only screen and (max-width: $breakpoint-large) {
+        width: 15px;
+        height: 15px;
+        right: 100px;
+        top: 15px;
+    }
+    @media only screen and (max-width: $breakpoint-small) {
+        width: 12px;
+        height: 12px;
+        right: 150px;
+        top: 12px;
+    }
+    @media only screen and (max-width: $breakpoint-smallest) {
+        width: 10px;
+        height: 10px;
+        right: 200px;
+        top: 10px;
+    }
 }

@@ -1,3 +1,4 @@
+@import '../../styles/breakpoints.module.scss';
 .background {
     position: absolute;
     background: linear-gradient(180deg, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, 0.7) 89.5%);
@@ -8,6 +9,26 @@
     position: relative;
     width: 280px;
     height: 350px;
+
+    @media only screen and (max-width: $breakpoint-720p) {
+        width: 260px;
+        height: 330px;
+    }
+
+    @media only screen and (max-width: $breakpoint-large) {
+        width: 250px;
+        height: 330px;
+    }
+
+    @media only screen and (max-width: $breakpoint-medium) {
+        width: 295px;
+        height: 365px;
+    }
+
+    @media only screen and (max-width: $breakpoint-small) {
+        width: 320px;
+        height: 390px;
+    }
 }
 .cardBottom {
     position: absolute;
