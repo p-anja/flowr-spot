@@ -1,28 +1,61 @@
 @import url('https://fonts.googleapis.com/css?family=Ubuntu&display=swap');
+@import '../../styles//breakpoints.module.scss';
 
 .container {
-      top: 50%;
-      left: 50%;
-      right: auto;
-      bottom: auto;
-      margin-right: -50%;
-      transform: translate(-50%, -50%);
-      height: 80%;
-      width: 60%;
-      border-radius: 3px;
-      box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.05);
-      overflow: visible;
+    top: 50%;
+    left: 50%;
+    right: auto;
+    bottom: auto;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    height: 380px;
+    width: 700px;
+    border-radius: 3px;
+    box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.05);
+    overflow: visible;
+    background-color: white;
+    border: white;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    @media only screen and (max-width: $breakpoint-900p) {
+       width: 40%;
+       height: 40%;
+    }
+
+    @media only screen and (max-width: $breakpoint-large) {
+        width: 50%;
+        height: 50%;
+     }
+
+     @media only screen and (max-width: $breakpoint-medium) {
+        width: 60%;
+        height: 40%;
+     }
+
+     @media only screen and (max-width: $breakpoint-small) {
+        width: 70%;
+        height: 45%;
+     }
+
+
 }
 .title {
     font-family: 'Ubuntu';
     font-style: normal;
-    font-size: 20px;
+    font-size: 25px;
     line-height: 20px;
     font-weight: bold;
 
     text-align: center;
-
+    margin-bottom: 50px;
     color: #334144;
+
+    @media only screen and (max-width: $breakpoint-900p) {
+        font-size: 20px;
+    }
 }
 
 .inputContainer {
@@ -35,13 +68,17 @@
     background: #F5F6F7;
     border: 1px solid #DFE5EA;
     border-radius: 3px;
-    width: 100%;
+    width: 80%;
     height: 50px;
     margin: 5px;
+
+    @media only screen and (max-width: $breakpoint-900p) {
+        width: 80%;
+    }
 }
 
 .button {
-    width: 100%;
+    width: 80%;
     height: 50px;
     margin: 5px;
     background: linear-gradient(270deg, #ECBCB3 0%, #EAA79E 100%);
@@ -59,17 +96,21 @@
     cursor: pointer;
 
     color: #FFFFFF;
+
+    @media only screen and (max-width: $breakpoint-900p) {
+        width: 80%;
+    }
 }
 
 .input2::placeholder  {
     position: absolute;
-    width: 65px;
-    height: 10px;
+    width: 80px;
+    height: 13px;
     left: 15px;
     top: 10px;
 
     font-weight: 400;
-    font-size: 10px;
+    font-size: 12px;
     line-height: 10px;
 
 

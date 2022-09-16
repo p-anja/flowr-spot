@@ -1,13 +1,71 @@
+@import '../../styles/breakpoints.module.scss';
+
+.modal {
+    top: 50%;
+    left: 50%;
+    right: auto;
+    bottom: auto;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    height: 350px;
+    width: 600px;
+    border-radius: 3px;
+    box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.05);
+    overflow: visible;
+    background-color: white;
+    border: white;
+
+    display: flex;
+    justify-content: center;
+
+    @media only screen and (max-width: $breakpoint-900p) {
+        width: 45%;    
+        height: 30%;
+    }
+    @media only screen and (max-width: $breakpoint-720p) {
+        width: 45%;    
+        height: 35%;
+    }
+    @media only screen and (max-width: $breakpoint-large) {
+        width: 50%;    
+        height: 45%;
+    }
+    @media only screen and (max-width: $breakpoint-medium) {
+        width: 50%;    
+        height: 35%;
+    }
+    @media only screen and (max-width: $breakpoint-small) {
+        width: 75%;    
+        height: 40%;
+    }
+}
 .button{
     background: linear-gradient(270deg, #ECBCB3 0%, #EAA79E 100%);
     box-shadow: 0px 15px 20px rgba(234, 168, 159, 0.2);
     border-radius: 3px;
     color: white;
     border: none;
-    width: 100px;
+    width: 150px;
     height: 50px;
     margin-top: 100px;
     cursor: pointer;
+
+    @media only screen and (max-width: $breakpoint-900p) {
+        width: 30%;    
+        height: 15%;
+    }
+
+    @media only screen and (max-width: $breakpoint-720p) {
+        width: 25%;    
+        height: 10%;
+    }
+    @media only screen and (max-width: $breakpoint-720p) {
+        width: 30%;    
+        height: 10%;
+    }
+    @media only screen and (max-width: $breakpoint-medium) {
+        margin-top: 50px;
+    }
 }
 
 .container {
@@ -16,17 +74,28 @@
     justify-content: center;
     align-items: center;
     height: 290px;
-    width: 440px;
+    width: 500px;
 
 }
 
 .label {
     font-weight: 300;
-    font-size: 25px;
+    font-size: 30px;
     line-height: 25px;
 
     margin-top: 50px;
     text-align: center;
     opacity: 0.7;
     color: #334144;
+
+    @media only screen and (max-width: $breakpoint-900p) {
+       font-size: 25px;
+    }
+
+    @media only screen and (max-width: $breakpoint-720p) {
+        font-size: 20px;
+    }
+    @media only screen and (max-width: $breakpoint-medium) {
+        margin-top: 25px;
+    }
 }

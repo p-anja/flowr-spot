@@ -17,10 +17,9 @@ const LoginModal = (props: ILoginModalProps) => {
     const message = useAppSelector((state) => state.auth.errorMessage);
     const {register, handleSubmit, formState: {errors}} = useForm();
     return(
-        <div className={styles.container}>
             <Modal
+            className={styles.container}
             isOpen={props.modalIsOpen}
-            style={customStyles}
             onRequestClose={() => dispatch(closeModal())}
             >
                 <h1 className={styles.title}>Welcome Back</h1>
@@ -44,25 +43,9 @@ const LoginModal = (props: ILoginModalProps) => {
                     <label className={styles.label} onClick={() => dispatch(closeModal())}>I don't want to login</label>
                 </div>
             </Modal>
-        </div>
     );
 }
 
 const content = 'Congratulations! You have successfully logged in for FlowrSpot!'
 
-const customStyles = {
-    content: {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
-      height: '290px',
-      width: '440px',
-      borderRadius: '3px',
-      boxShadow: '0px 15px 30px rgba(0, 0, 0, 0.05)',
-      overflow: 'visible'
-    },
-  };
 export default LoginModal;

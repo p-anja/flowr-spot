@@ -21,9 +21,9 @@ const LogoutModal =  (props: ILogoutModalProps) => {
     return(
             <Modal
             isOpen={props.modalIsOpen}
-            style={customStyles}
+            className={styles.container}
             >
-                <div className={styles.container}>
+                <div className={styles.container2}>
                     <div className={styles.xButtonContainer}>
                         <img onClick={() => dispatch(closeModal())} src={xButton} className={styles.buttonImage}></img>
                     </div>
@@ -51,19 +51,5 @@ const LogoutModal =  (props: ILogoutModalProps) => {
 }
 
 const content = 'You are successfully logged out.'
-const customStyles = {
-    content: {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
-      height: '550px',
-      width: '590px',
-      borderRadius: '3px',
-      boxShadow: '0px 15px 30px rgba(0, 0, 0, 0.05)',
-    },
-  };
   
 export default LogoutModal;

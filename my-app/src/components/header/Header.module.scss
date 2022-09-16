@@ -83,3 +83,11 @@
     cursor: pointer;
     margin-right: 20px;
 }
+
+.hamburgerMenuContainer{
+    margin-right: 15px;
+
+    @media only screen and (min-width: $breakpoint-medium) {
+        display: none;
+    }
+}

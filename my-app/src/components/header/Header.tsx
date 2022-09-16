@@ -10,12 +10,15 @@ import { useAppDispatch, useAppSelector } from '../../utils/hooks';
 import NotificationModal from '../notificationModal/NotificationModal';
 import ModalStatus from '../../enum/ModalStatus';
 import { openModal } from '../../store/actions/userActions';
+import menuIcon from '../../assets/mm_hamburger.svg';
+import xIcon from '../../assets/x-button.svg';
 
-const Header = () => {
+const Header = (props: any) => {
     const dispatch: any = useAppDispatch()
     const user = useAppSelector((state) => state.auth.user)
     const isAuthorized = useAppSelector((state) => state.auth.isAuthorized);
     const modalStatus = useAppSelector((state) => state.auth.modalStatus);
+    const [openMenu, setOpenMenu] = useState(false);
 
     useEffect(() =>{
         if(isAuthorized)
@@ -32,6 +35,10 @@ const Header = () => {
     const openLogoutModal = () => {
         dispatch(openModal(ModalStatus.LogOut))
     }
+    const openAndCloseMenu = () => {
+        props.menuIsOpen(!openMenu)
+        setOpenMenu(!openMenu)
+    }
 
     const checkModalStatus = (modalStatus === ModalStatus.LogInSuccess) || (modalStatus === ModalStatus.SignUpSuccess) || (modalStatus === ModalStatus.LogOutSuccess);
 
@@ -40,6 +47,9 @@ const Header = () => {
                 <div className={styles.logoContainer}>
                     <img src={logo} className={styles.logoPic}></img>
                     <h3 className={styles.logo}>FlowrSpot</h3>
+                </div>
+                <div className={styles.hamburgerMenuContainer}>
+                    <img src={openMenu ? xIcon : menuIcon} onClick={() => openAndCloseMenu()}></img>
                 </div>
                 <div className={styles.navigationContainer}>
                     <a className={styles.headerButton}>Flowers</a>

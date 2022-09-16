@@ -20,7 +20,7 @@ const SignUpModal = (props: ISignUpModalProps) => {
     return(
             <Modal
             isOpen={props.modalIsOpen}
-            style={customStyles}
+            className={styles.container}
             onRequestClose={() => dispatch(closeModal())}
             >
                 <h1 className={styles.title}>Create an account</h1>
@@ -65,20 +65,5 @@ const SignUpModal = (props: ISignUpModalProps) => {
 }
 
 const content = 'Congratulations! You have successfully signed up for FlowrSpot!'
-const customStyles = {
-    content: {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
-      height: '410px',
-      width: '440px',
-      borderRadius: '3px',
-      boxShadow: '0px 15px 30px rgba(0, 0, 0, 0.05)',
-      overflow: 'visible'
-    },
-  };
 
 export default SignUpModal;

@@ -1,15 +1,58 @@
+@import '../../styles/breakpoints.module.scss';
+
 .container {
-    // display: flex;
-    // flex-direction: column;
-    // align-items: center;
-    margin-left: 100px;
+    top: 50%;
+    left: 50%;
+    right: auto;
+    bottom: auto;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    height: 610px;
+    width: 590px;
+    border-radius: 3px;
+    box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.05);
+    overflow: visible;
+    background-color: white;
+    border: white;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    @media only screen and (max-width: $breakpoint-900p) {
+        width: 40%;
+        height: 60%;
+     }
+
+     @media only screen and (max-width: $breakpoint-large) {
+        width: 50%;
+        height: 75%;
+     }
+
+     @media only screen and (max-width: $breakpoint-small) {
+        width: 80%;
+        height: 65%;
+     }
 }
 .container1 {
     height: 150px;
     display: flex;
     justify-content: flex-start;
-}
 
+    @media only screen and (max-width: $breakpoint-900p) {
+        height: 90px;
+     }
+}
+.container2{
+    margin-left: 100px;
+
+    @media only screen and (max-width: $breakpoint-900p) {
+        margin-left: 90px;
+     }
+    @media only screen and (max-width: $breakpoint-small) {
+        margin-left: 50px;
+    }
+}
 .title {
     font-family: 'Ubuntu';
     font-style: normal;
@@ -19,6 +62,15 @@
 
     margin: 0;
     color: #334144;
+
+    @media only screen and (max-width: $breakpoint-900p) {
+       font-size: 20px;
+     }
+
+     @media only screen and (max-width: $breakpoint-large) {
+        font-size: 18px;
+     }
+    
 }
 
 .label {
@@ -65,17 +117,48 @@
     line-height: 14px;
     cursor: pointer;
 
+    @media only screen and (max-width: $breakpoint-900p) {
+        height: 40px;
+        width: 138px;
+     }
+
+     @media only screen and (max-width: $breakpoint-large) {
+        height: 30px;
+        width: 128px;
+     }
+
 }
 
 .buttonContainer {
     display: flex;
     justify-content: center;
     padding: 30px;
+
+    @media only screen and (max-width: $breakpoint-large) {
+        padding: 20px;
+        margin-bottom: 10px;
+     }
 }
 
 .xButtonContainer {
     display: flex;
     justify-content: flex-end;
+    margin-right: 15px;
+
+    @media only screen and (max-width: $breakpoint-900p) {
+        margin-right: 20px;
+        margin-bottom: 10px;
+        margin-top: 10px;
+     }
+
+     @media only screen and (max-width: $breakpoint-large) {
+        margin-bottom: 0;
+        margin-top: 10px;
+     }
+
+     @media only screen and (max-width: $breakpoint-small) {
+        margin-top: 20px;
+     }
 
 }
 
