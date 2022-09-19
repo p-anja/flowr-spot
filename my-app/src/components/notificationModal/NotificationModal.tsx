@@ -1,6 +1,5 @@
-import { stat } from 'fs';
 import Modal from 'react-modal';
-import { closeLoginForm, closeLogoutForm, closeModal, closeSignUpForm, openLoginForm } from '../../store/actions/userActions';
+import { closeLoginForm, closeLogoutForm, closeModal, closeSignUpForm } from '../../store/actions/userActions';
 import { useAppDispatch, useAppSelector } from '../../utils/hooks';
 import styles from './NotificationModal.module.scss';
 

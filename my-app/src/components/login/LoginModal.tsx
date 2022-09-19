@@ -7,6 +7,8 @@ import ErrorLabel from '../errorLabel/ErrorLabel';
 import { closeModal } from '../../store/actions/userActions';
 
 
+const content = 'Congratulations! You have successfully logged in for FlowrSpot!'
+
 interface ILoginModalProps {
     modalIsOpen: boolean
 }
@@ -15,7 +17,7 @@ const LoginModal = (props: ILoginModalProps) => {
 
     const dispatch: any = useAppDispatch();
     const message = useAppSelector((state) => state.auth.errorMessage);
-    const {register, handleSubmit, formState: {errors}} = useForm();
+    const {register, handleSubmit} = useForm();
     return(
             <Modal
             className={styles.container}
@@ -33,7 +35,7 @@ const LoginModal = (props: ILoginModalProps) => {
                         <input {...register('password', {required: true})} placeholder='Password' type='password' className={styles.input2}></input>
                     </div>
                     <div className={styles.inputContainer}>
-                        { message && <ErrorLabel content={message}></ErrorLabel> }
+                        { message && <ErrorLabel content={message}/> }
                     </div>
                     <div className={styles.inputContainer}>
                         <button type='submit' className={styles.button}>Login to your account</button>
@@ -45,7 +47,5 @@ const LoginModal = (props: ILoginModalProps) => {
             </Modal>
     );
 }
-
-const content = 'Congratulations! You have successfully logged in for FlowrSpot!'
 
 export default LoginModal;

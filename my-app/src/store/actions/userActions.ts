@@ -11,7 +11,6 @@ export const setUser = () => async (dispatch: any) => {
         payload: data.user,
     })
 }
-
 export const loginUser = (info: any, content: any) => async (dispatch: any) => {
 
     try{
@@ -34,7 +33,6 @@ export const loginUser = (info: any, content: any) => async (dispatch: any) => {
         })
     }
 }
-
 export const logoutUser = (content: any) => (dispatch: any) => {
 
     localStorage.removeItem('token');
@@ -44,7 +42,6 @@ export const logoutUser = (content: any) => (dispatch: any) => {
         payload: content
     })
 }
-
 export const signUpUser = (info: any, content: any) => async (dispatch: any) => {
     try{
         const {data} = await userSignUp(info);
@@ -65,7 +62,6 @@ export const signUpUser = (info: any, content: any) => async (dispatch: any) => 
         })
     }
 }
-
 export const openModal = (status: ModalStatus) =>  {
 
     return {
@@ -74,7 +70,6 @@ export const openModal = (status: ModalStatus) =>  {
     }
 
 }
-
 export const closeModal = () =>  {
 
     return {
@@ -82,7 +77,6 @@ export const closeModal = () =>  {
     }
 
 }
-
 export const openMenu = () =>  {
 
     return {
@@ -90,7 +84,6 @@ export const openMenu = () =>  {
     }
 
 }
-
 export const closeMenu = () =>  {
 
     return {
@@ -98,7 +91,6 @@ export const closeMenu = () =>  {
     }
 
 }
-
 export const openLoginForm = () =>  {
 
     return {
@@ -113,7 +105,6 @@ export const closeLoginForm = () =>  {
     }
 
 }
-
 export const openSignUpForm = () =>  {
 
     return {
@@ -135,7 +126,6 @@ export const closeLogoutForm = () =>  {
     }
 
 }
-
 export const openLogoutForm = () =>  {
 
     return {

@@ -14,6 +14,7 @@ import menuIcon from '../../assets/mm_hamburger.svg';
 import xIcon from '../../assets/x-button.svg';
 
 const Header = () => {
+
     const dispatch: any = useAppDispatch()
     const user = useAppSelector((state) => state.auth.user)
     const isAuthorized = useAppSelector((state) => state.auth.isAuthorized);
@@ -26,8 +27,8 @@ const Header = () => {
     useEffect(() =>{
         if(isAuthorized)
             dispatch(setUser())
+            // eslint-disable-next-line
     }, [isAuthorized]);
-
 
     const openSignUpModal = () => {
         dispatch(openModal(ModalStatus.SignUp))
@@ -53,25 +54,27 @@ const Header = () => {
        }
     }
 
-    const checkModalStatus = (modalStatus === ModalStatus.LogInSuccess) || (modalStatus === ModalStatus.SignUpSuccess) || (modalStatus === ModalStatus.LogOutSuccess);
+    const checkModalStatus = (modalStatus === ModalStatus.LogInSuccess) || 
+                             (modalStatus === ModalStatus.SignUpSuccess) || 
+                             (modalStatus === ModalStatus.LogOutSuccess);
 
     return(
         <header className={styles.header}>
                 <div className={styles.logoContainer}>
-                    <img src={logo} className={styles.logoPic}></img>
+                    <img src={logo} className={styles.logoPic} alt=''></img>
                     <h3 className={styles.logo}>FlowrSpot</h3>
                 </div>
                 <div className={styles.hamburgerMenuContainer}>
-                    <img src={menuIsOpened ? xIcon : menuIcon} onClick={() => openAndCloseMenu()}></img>
+                    <img src={menuIsOpened ? xIcon : menuIcon} onClick={openAndCloseMenu} alt=''></img>
                 </div>
                 <div className={styles.navigationContainer}>
-                    <a className={styles.headerButton}>Flowers</a>
-                    <a className={styles.headerButton}>Latest sightings</a>
-                    <a className={styles.headerButton}>Favourites</a>
-                    { !isAuthorized && <a className={styles.headerLoginButton} onClick={openLoginModal}>Login</a>}
+                    <a className={styles.headerButton} href="/#">Flowers</a>
+                    <a className={styles.headerButton} href="/#">Latest sightings</a>
+                    <a className={styles.headerButton} href="/#">Favourites</a>
+                    { !isAuthorized && <a className={styles.headerLoginButton} onClick={openLoginModal} href="/#">Login</a>}
                     { !isAuthorized && <button className={styles.newAccountButton} onClick={openSignUpModal}>New account</button>}
-                    { isAuthorized && user && <a className={styles.headerButton} onClick={openLogoutModal}>{user.first_name} {user.last_name}</a>}
-                    { isAuthorized && user && <img src={profilePic} className={styles.profilePicture} onClick={openLogoutModal}></img>}
+                    { isAuthorized && user && <a className={styles.headerButton} onClick={openLogoutModal} href="/#">{user.first_name} {user.last_name}</a>}
+                    { isAuthorized && user && <img src={profilePic} className={styles.profilePicture} onClick={openLogoutModal} alt=''></img>}
                     <SignUpModal modalIsOpen={modalStatus === ModalStatus.SignUp}></SignUpModal>
                     <LoginModal modalIsOpen={modalStatus === ModalStatus.LogIn}></LoginModal>
                     <LogoutModal modalIsOpen={modalStatus === ModalStatus.LogOut}></LogoutModal>

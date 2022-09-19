@@ -4,5 +4,4 @@ const ErrorLabel = (props: any) =>(
         <label className={styles.label}>{props.content}</label>
     );
 
-
 export default ErrorLabel;

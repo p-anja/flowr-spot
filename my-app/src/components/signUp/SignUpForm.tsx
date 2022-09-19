@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { closeModal, signUpUser } from "../../store/actions/userActions";
+import { signUpUser } from "../../store/actions/userActions";
 import { useAppDispatch, useAppSelector } from "../../utils/hooks";
 import ErrorLabel from "../errorLabel/ErrorLabel";
 import styles from './SignUpModal.module.scss';
@@ -25,25 +25,25 @@ const SignUpForm = () =>{
                         <input {...register('last_name', {required: true, pattern: /[A-Za-z]/ })} placeholder='Last name' className={styles.input}></input>
                     </div>
                     <div className={styles.inputContainer}>
-                        { (errors.first_name || errors.last_name) && <ErrorLabel content='Invalid name. Please try again.'></ErrorLabel>}
+                        { (errors.first_name || errors.last_name) && <ErrorLabel content='Invalid name. Please try again.'/>}
                     </div>
                     <div className={styles.inputContainer}>
                         <input {...register('date_of_birth', {required: true, pattern: /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/})} placeholder='Date of Birth' type='date' className={styles.input2}></input>
                     </div>
                     <div className={styles.inputContainer}>
-                        <input {...register('email', {required: true, pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/})} placeholder='Email Address' className={styles.input2}></input>
+                        <input {...register('email', {required: true, pattern: /^([\w-]+\.)+@([\w-]+\.)+[\w-]{2,4}$/})} placeholder='Email Address' className={styles.input2}></input>
                     </div>
                     <div className={styles.inputContainer}>
-                        { errors.email && <ErrorLabel content='Invalid email. Please try again.'></ErrorLabel>}
+                        { errors.email && <ErrorLabel content='Invalid email. Please try again.'/>}
                     </div>
                     <div className={styles.inputContainer}>
                         <input {...register('password', {required: true, pattern: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/})} placeholder='Password' type='password' className={styles.input2}></input>
                     </div>
                     <div className={styles.inputContainer}>
-                        { errors.password && <ErrorLabel content='Password must contain minimum eight characters, at least one letter and one number. Please try again.'></ErrorLabel>}
+                        { errors.password && <ErrorLabel content='Password must contain minimum eight characters, at least one letter and one number. Please try again.'/>}
                     </div>
                     <div className={styles.inputContainer}>
-                        { message && <ErrorLabel content={message}></ErrorLabel>}
+                        { message && <ErrorLabel content={message}/>}
                     </div>
                     <div className={styles.inputContainer}>
                         <button type='submit' className={styles.button}>Create account</button>

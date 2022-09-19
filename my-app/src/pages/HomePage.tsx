@@ -4,14 +4,13 @@ import HomeSearch from '../components/homeSearch/HomeSearch';
 import FlowerList from '../components/flowerList/FlowerList';
 import { fetchFlowers, Flower } from "../service/Flower.service";
 import BurgerMenu from '../components/burgerMenu/BurgerMenu';
-import { useAppDispatch, useAppSelector } from '../utils/hooks';
+import { useAppSelector } from '../utils/hooks';
 import LoginForm from '../components/login/LoginForm';
 import SignUpForm from '../components/signUp/SignUpForm';
 import LogoutForm from '../components/logout/LogoutForm';
 
 
 const HomePage = () => {
-    const dispatch = useAppDispatch();
     const showMenu = useAppSelector((state) => state.auth.openMenu);
     const [flowers, setFlowers] = useState<Flower[]>([]); 
     const showLoginForm = useAppSelector((state) => state.auth.openLoginForm);
@@ -27,15 +26,23 @@ const HomePage = () => {
         fetchData();
     }, []);
 
+    const homePageRenderCondition = () =>{
+        return !showMenu && !showLoginForm && !showSignUpForm && !showLogoutForm;
+    }
+
+    const burgerMenuRenderCondition = () =>{
+        return showMenu && !showLoginForm && !showSignUpForm && !showLogoutForm;
+    }
+
     return(
         <div>
-            <Header></Header>
-            {!showMenu && !showLoginForm && !showSignUpForm && !showLogoutForm && <HomeSearch></HomeSearch>}
-            {!showMenu && flowers && !showLoginForm && !showSignUpForm && !showLogoutForm && <FlowerList flowers={flowers}></FlowerList>} 
-            {showMenu && !showLoginForm && !showSignUpForm && !showLogoutForm && <BurgerMenu></BurgerMenu>}
-            {showLoginForm && <LoginForm></LoginForm>}
-            {showSignUpForm && <SignUpForm></SignUpForm>}
-            {showLogoutForm && <LogoutForm></LogoutForm>}
+            <Header />
+            {homePageRenderCondition() && <HomeSearch />}
+            {homePageRenderCondition() && flowers && <FlowerList flowers={flowers} />} 
+            {burgerMenuRenderCondition() && <BurgerMenu />}
+            {showLoginForm && <LoginForm />}
+            {showSignUpForm && <SignUpForm />}
+            {showLogoutForm && <LogoutForm />}
         </div>
     );
 }

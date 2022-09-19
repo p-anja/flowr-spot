@@ -1,7 +1,7 @@
 import { closeMenu, openModal, openLoginForm, openSignUpForm, openLogoutForm } from '../../store/actions/userActions';
 import styles from './BurgerMenu.module.scss';
 import { useAppDispatch, useAppSelector } from '../../utils/hooks';
-import {useEffect, useState} from 'react';
+import { useState, useEffect } from 'react';
 import ModalStatus from '../../enum/ModalStatus';
 
 const width = window.innerWidth;
@@ -15,7 +15,7 @@ const BurgerMenu = () => {
 
     useEffect(() =>{
         setIsMobile(width < MOBILE_WIDTH);
-    }, [width])
+    }, [])
 
     const showLoginForm = () =>{
         dispatch(closeMenu())
@@ -42,12 +42,12 @@ const BurgerMenu = () => {
     return(
         <div className={styles.container}>
             <div className={styles.buttonContainer}>
-                {isAuthorized && <a className={styles.menuButton} onClick={showLogoutForm}>Profile</a>}
-                <a className={styles.menuButton}>Flowers</a>
-                <a className={styles.menuButton}>Latest sightings</a>
-                <a className={styles.menuButton}>Favorites</a>
-                {isAuthorized && <a className={styles.menuButton}>Settings</a>}
-                {!isAuthorized && <a className={styles.loginButton} onClick={showLoginForm}>Login</a>}
+                {isAuthorized && <a className={styles.menuButton} onClick={showLogoutForm} href="/#">Profile</a>}
+                <a className={styles.menuButton} href="/#">Flowers</a>
+                <a className={styles.menuButton} href="/#">Latest sightings</a>
+                <a className={styles.menuButton} href="/#">Favorites</a>
+                {isAuthorized && <a className={styles.menuButton} href="/#">Settings</a>}
+                {!isAuthorized && <a className={styles.loginButton} onClick={showLoginForm} href="/#">Login</a>}
                 {!isAuthorized && <button className={styles.newAccountButton} onClick={showSignUpForm}>New account</button>}
             </div>
         </div>
