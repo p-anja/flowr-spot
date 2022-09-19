@@ -11,4 +11,8 @@ export type Flower = {
 
 export const fetchFlowers = async (): Promise<any> => {
     return await http.get("/v1/flowers");
+};
+
+export const searchFlowers = async (searchTerm: any): Promise<any> => {
+    return await http.get("/v1/flowers/search?query=" + searchTerm);
   };

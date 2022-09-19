@@ -4,7 +4,6 @@ import { useAppDispatch, useAppSelector } from '../../utils/hooks';
 import { useState, useEffect } from 'react';
 import ModalStatus from '../../enum/ModalStatus';
 
-const width = window.innerWidth;
 const MOBILE_WIDTH = 768;
 
 const BurgerMenu = () => {
@@ -12,10 +11,17 @@ const BurgerMenu = () => {
     const dispatch: any = useAppDispatch();
     const isAuthorized = useAppSelector((state) => state.auth.isAuthorized);
     const [isMobile, setIsMobile] = useState(false);
+    const [windowsWidth, setWindowsWidth] = useState<number>(window.innerWidth);
 
-    useEffect(() =>{
-        setIsMobile(width < MOBILE_WIDTH);
-    }, [])
+    useEffect(() => {
+        const handleResize = () => setWindowsWidth(window.innerWidth);
+        window.addEventListener("resize", handleResize);
+        setIsMobile(windowsWidth < MOBILE_WIDTH);
+
+        return () => {
+          window.removeEventListener("resize", handleResize);
+        }
+      }, [windowsWidth]);
 
     const showLoginForm = () =>{
         dispatch(closeMenu())
