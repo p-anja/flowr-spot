@@ -13,7 +13,11 @@ interface UserState {
     isAuthorized: boolean,
     errorMessage: string | null,
     modalStatus: ModalStatus | null,
-    content: string | null
+    content: string | null,
+    openMenu: boolean,
+    openLoginForm: boolean,
+    openSignUpForm: boolean,
+    openLogoutForm: boolean
 }
 
 const initialState: UserState = {
@@ -26,7 +30,12 @@ const initialState: UserState = {
     isAuthorized: false,
     errorMessage: null,
     modalStatus: null,
-    content: null
+    content: null,
+    openMenu: false,
+    openLoginForm: false,
+    openSignUpForm: false,
+    openLogoutForm: false
+
 }
 export const userReducer: Reducer<UserState> = (state = initialState, action: any) =>{
 
@@ -78,6 +87,46 @@ export const userReducer: Reducer<UserState> = (state = initialState, action: an
                 ...state,
                 modalStatus: null,
                 content: null
+        };
+        case ActionTypes.OPEN_MENU:
+            return{
+                ...state,
+                openMenu: true
+        };
+        case ActionTypes.CLOSE_MENU:
+            return{
+                ...state,
+                openMenu: false
+        };
+        case ActionTypes.OPEN_LOGIN_FORM:
+            return{
+                ...state,
+                openLoginForm: true
+        };
+        case ActionTypes.CLOSE_LOGIN_FORM:
+            return{
+                ...state,
+                openLoginForm: false
+        };
+        case ActionTypes.OPEN_SIGNUP_FORM:
+            return{
+                ...state,
+                openSignUpForm: true
+        };
+        case ActionTypes.CLOSE_SIGNUP_FORM:
+            return{
+                ...state,
+                openSignUpForm: false
+        };
+        case ActionTypes.CLOSE_LOGOUT_FORM:
+            return{
+                ...state,
+                openLogoutForm: false
+        };
+        case ActionTypes.OPEN_LOGOUT_FORM:
+            return{
+                ...state,
+                openLogoutForm: true
         };
         default:
             return state;

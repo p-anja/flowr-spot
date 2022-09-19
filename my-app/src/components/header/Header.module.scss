@@ -75,6 +75,7 @@
     text-align: center;
     cursor: pointer;
     padding: 5px;
+    margin-right: 10px;
 }
 
 .profilePicture {
@@ -86,8 +87,8 @@
 
 .hamburgerMenuContainer{
     margin-right: 15px;
-
-    @media only screen and (min-width: $breakpoint-medium) {
-        display: none;
+    display: none;
+    @media only screen and (max-width: $breakpoint-medium) {
+        display: unset;
     }
 }

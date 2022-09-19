@@ -82,3 +82,64 @@ export const closeModal = () =>  {
     }
 
 }
+
+export const openMenu = () =>  {
+
+    return {
+        type: ActionTypes.OPEN_MENU
+    }
+
+}
+
+export const closeMenu = () =>  {
+
+    return {
+        type: ActionTypes.CLOSE_MENU
+    }
+
+}
+
+export const openLoginForm = () =>  {
+
+    return {
+        type: ActionTypes.OPEN_LOGIN_FORM
+    }
+
+}
+export const closeLoginForm = () =>  {
+
+    return {
+        type: ActionTypes.CLOSE_LOGIN_FORM
+    }
+
+}
+
+export const openSignUpForm = () =>  {
+
+    return {
+        type: ActionTypes.OPEN_SIGNUP_FORM
+    }
+
+}
+export const closeSignUpForm = () =>  {
+
+    return {
+        type: ActionTypes.CLOSE_SIGNUP_FORM
+    }
+
+}
+export const closeLogoutForm = () =>  {
+
+    return {
+        type: ActionTypes.CLOSE_LOGOUT_FORM
+    }
+
+}
+
+export const openLogoutForm = () =>  {
+
+    return {
+        type: ActionTypes.OPEN_LOGOUT_FORM
+    }
+
+}

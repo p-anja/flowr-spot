@@ -1,34 +1,54 @@
-import { openModal } from '../../store/actions/userActions';
+import { closeMenu, openModal, openLoginForm, openSignUpForm, openLogoutForm } from '../../store/actions/userActions';
 import styles from './BurgerMenu.module.scss';
-import { useAppDispatch } from '../../utils/hooks';
+import { useAppDispatch, useAppSelector } from '../../utils/hooks';
+import {useEffect, useState} from 'react';
 import ModalStatus from '../../enum/ModalStatus';
 
-const BurgerMenu = (props: any) => {
+const width = window.innerWidth;
+const MOBILE_WIDTH = 768;
 
-    const dispatch = useAppDispatch();
+const BurgerMenu = () => {
 
-    const openSignUpModal = () => {
-        props.close(false)
-        dispatch(openModal(ModalStatus.SignUp))
+    const dispatch: any = useAppDispatch();
+    const isAuthorized = useAppSelector((state) => state.auth.isAuthorized);
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() =>{
+        setIsMobile(width < MOBILE_WIDTH);
+    }, [width])
+
+    const showLoginForm = () =>{
+        dispatch(closeMenu())
+        if(isMobile)
+            dispatch(openLoginForm())
+        else
+            dispatch(openModal(ModalStatus.LogIn))
     }
-    const openLoginModal = () => {
-        props.close(false)
-        dispatch(openModal(ModalStatus.LogIn))
+
+    const showSignUpForm = () =>{
+        dispatch(closeMenu())
+        if(isMobile)
+            dispatch(openSignUpForm())
+        else
+            dispatch(openModal(ModalStatus.SignUp))
     }
-    const openLogoutModal = () =>{
-        props.close(false)
-        dispatch(openModal(ModalStatus.LogOut))
+    const showLogoutForm = () =>{
+        dispatch(closeMenu())
+        if(isMobile)
+            dispatch(openLogoutForm())
+        else
+            dispatch(openModal(ModalStatus.LogOut))
     }
     return(
         <div className={styles.container}>
             <div className={styles.buttonContainer}>
-                <a className={styles.menuButton} onClick={openLogoutModal}>Profile</a>
+                {isAuthorized && <a className={styles.menuButton} onClick={showLogoutForm}>Profile</a>}
                 <a className={styles.menuButton}>Flowers</a>
                 <a className={styles.menuButton}>Latest sightings</a>
                 <a className={styles.menuButton}>Favorites</a>
-                <a className={styles.menuButton}>Settings</a>
-                <a className={styles.loginButton} onClick={openLoginModal}>Login</a>
-                <button className={styles.newAccountButton} onClick={openSignUpModal}>New account</button>
+                {isAuthorized && <a className={styles.menuButton}>Settings</a>}
+                {!isAuthorized && <a className={styles.loginButton} onClick={showLoginForm}>Login</a>}
+                {!isAuthorized && <button className={styles.newAccountButton} onClick={showSignUpForm}>New account</button>}
             </div>
         </div>
     )
