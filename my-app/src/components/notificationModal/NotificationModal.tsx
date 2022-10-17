@@ -7,6 +7,8 @@ interface INotificationModalProps {
     modalIsOpen: boolean
 }
 
+// Modal.setAppElement('#root');
+
 const NotificationModal = (props: INotificationModalProps) =>{
     const dispatch = useAppDispatch();
     const content = useAppSelector((state) => state.auth.content);

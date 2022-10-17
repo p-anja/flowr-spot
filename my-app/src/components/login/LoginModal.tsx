@@ -9,6 +9,8 @@ import { closeModal } from '../../store/actions/userActions';
 
 const content = 'Congratulations! You have successfully logged in for FlowrSpot!'
 
+// Modal.setAppElement('#root');
+
 interface ILoginModalProps {
     modalIsOpen: boolean
 }

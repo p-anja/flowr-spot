@@ -5,4 +5,4 @@ declare module "*.svg" {
     export default content;
   }
 
-  declare module 'react-modal';
+declare module 'react-modal';

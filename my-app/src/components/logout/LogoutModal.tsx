@@ -12,6 +12,8 @@ interface ILogoutModalProps {
     modalIsOpen: boolean
 }
 
+// Modal.setAppElement('#root');
+
 const LogoutModal =  (props: ILogoutModalProps) => {
 
     const dispatch: any = useAppDispatch();

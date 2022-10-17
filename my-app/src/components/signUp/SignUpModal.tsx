@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from '../../utils/hooks';
 import ErrorLabel from '../errorLabel/ErrorLabel';
 import styles from './SignUpModal.module.scss';
 
-Modal.setAppElement('#root');
+// Modal.setAppElement('#root');
 const content = 'Congratulations! You have successfully signed up for FlowrSpot!'
 
 interface ISignUpModalProps {
