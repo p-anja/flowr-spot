@@ -1,10 +1,30 @@
+@import '../../styles/breakpoints.module.scss';
+
 .container {
     width: 100%;
-    height: 100vh;
     padding-top: 90px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-content: stretch;
-    //background-color: red;
+
+    display: grid;
+    grid-template-columns: repeat(6, 1fr [col-start]);
+    row-gap: 20px;
+    justify-items: center;
+
+    @media only screen and (max-width: $breakpoint-1080p) {
+        grid-template-columns: repeat(5, 1fr [col-start]);
+    }
+
+    @media only screen and (max-width: $breakpoint-900p) {
+        grid-template-columns: repeat(4, 1fr [col-start]);
+    }
+
+    @media only screen and (max-width: $breakpoint-large) {
+        grid-template-columns: repeat(3, 1fr [col-start]);
+        justify-items: center;
+    }
+    @media only screen and (max-width: $breakpoint-medium) {
+        grid-template-columns: repeat(2, 1fr [col-start]);
+    }
+    @media only screen and (max-width: $breakpoint-small) {
+        grid-template-columns: repeat(1, 1fr [col-start]);
+    }
 }
