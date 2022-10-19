@@ -27,14 +27,14 @@ const LoginModal = (props: ILoginModalProps) => {
             onRequestClose={() => dispatch(closeModal())}
             >
                 <h1 className={styles.title}>Welcome Back</h1>
-                <form onSubmit={handleSubmit((data) =>{
+                <form data-cy='login-form' onSubmit={handleSubmit((data) =>{
                     dispatch(loginUser(data, content));
                 })}>
                     <div className={styles.inputContainer}>
-                        <input {...register('email', {required: true})} placeholder='Email Address' type='text' className={styles.input2}></input>
+                        <input data-cy='email' {...register('email', {required: true})} placeholder='Email Address' type='text' className={styles.input2}></input>
                     </div>
                     <div className={styles.inputContainer}>
-                        <input {...register('password', {required: true})} placeholder='Password' type='password' className={styles.input2}></input>
+                        <input data-cy='password' {...register('password', {required: true})} placeholder='Password' type='password' className={styles.input2}></input>
                     </div>
                     <div className={styles.inputContainer}>
                         { message && <ErrorLabel content={message}/> }
@@ -44,7 +44,7 @@ const LoginModal = (props: ILoginModalProps) => {
                     </div>
                 </form>
                 <div className={styles.labelContainer}>
-                    <label className={styles.label} onClick={() => dispatch(closeModal())}>I don't want to login</label>
+                    <label data-cy='close-button' className={styles.label} onClick={() => dispatch(closeModal())}>I don't want to login</label>
                 </div>
             </Modal>
     );

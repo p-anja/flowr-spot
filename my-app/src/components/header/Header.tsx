@@ -74,7 +74,7 @@ const Header = () => {
                     { !isAuthorized && <a className={styles.headerLoginButton} onClick={openLoginModal} href="/#">Login</a>}
                     { !isAuthorized && <button className={styles.newAccountButton} onClick={openSignUpModal}>New account</button>}
                     { isAuthorized && user && <a className={styles.headerButton} onClick={openLogoutModal} href="/#">{user.first_name} {user.last_name}</a>}
-                    { isAuthorized && user && <img src={profilePic} className={styles.profilePicture} onClick={openLogoutModal} alt=''></img>}
+                    { isAuthorized && user && <img src={profilePic} data-cy='profile-pic' className={styles.profilePicture} onClick={openLogoutModal} alt=''></img>}
                     <SignUpModal modalIsOpen={modalStatus === ModalStatus.SignUp}></SignUpModal>
                     <LoginModal modalIsOpen={modalStatus === ModalStatus.LogIn}></LoginModal>
                     <LogoutModal modalIsOpen={modalStatus === ModalStatus.LogOut}></LogoutModal>
